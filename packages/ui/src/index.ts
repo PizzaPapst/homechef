@@ -1,1 +1,6 @@
 export * from './components/Button/Button';
+export * from './components/IconButton/IconButton';
+export * from './components/Badge/Badge';
+export * from './components/InputText/InputText';
+export * from './components/InputTextarea/InputTextarea';
+export * from './components/ActionTile/ActionTile';
