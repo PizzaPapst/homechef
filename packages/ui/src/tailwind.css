@@ -1,0 +1,6 @@
+/* Importiere die generierten Tokens aus Style Dictionary */
+@import './build/variables.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

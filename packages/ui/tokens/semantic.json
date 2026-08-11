@@ -1,0 +1,84 @@
+{
+    "color": {
+        "content": {
+            "text": {
+                "default": {
+                    "value": "{color.scooty-gray.800}"
+                },
+                "inverted": {
+                    "value": "{color.scooty-gray.50}"
+                },
+                "placeholder": {
+                    "value": "{color.scooty-gray.500}"
+                },
+                "label": {
+                    "value": "{color.scooty-gray.600}"
+                },
+                "additional": {
+                    "value": "{color.scooty-gray.500}"
+                },
+                "link": {
+                    "value": "{color.fresh-blue.600}"
+                },
+                "link-clicked": {
+                    "value": "{color.toned-fuchsia.600}"
+                },
+                "disabled": {
+                    "value": "{color.scooty-gray.400}"
+                }
+            }
+        },
+        "background": {
+            "action": {
+                "primary-subtle-default": {
+                    "value": "{color.muted-turquoise.100}"
+                },
+                "primary-subtle-hover": {
+                    "value": "{color.muted-turquoise.200}"
+                },
+                "primary-subtle-pressed": {
+                    "value": "{color.muted-turquoise.300}"
+                },
+                "primary-default": {
+                    "value": "{color.muted-turquoise.600}"
+                },
+                "primary-hover": {
+                    "value": "{color.scooty-gray.500}"
+                },
+                "primary-pressed": {
+                    "value": "{color.fresh-blue.600}"
+                },
+                "primary-focused": {
+                    "value": "{color.toned-fuchsia.600}"
+                },
+                "secondary-default": {
+                    "value": "{color.white}"
+                },
+                "secondary-hover": {
+                    "value": "{color.scooty-gray.50}"
+                },
+                "secondary-pressed": {
+                    "value": "{color.scooty-gray.100}"
+                },
+                "secondary-focused": {
+                    "value": "{color.white}"
+                },
+                "tertiary-default": {
+                    "value": "{color.transparent.full}"
+                },
+                "tertiary-hover": {
+                    "value": "{color.scooty-gray.50}"
+                },
+                "tertiary-pressed": {
+                    "value": "{color.scooty-gray.100}"
+                },
+                "tertiary-focused": {
+                    "value": "{color.white}"
+                },
+                "disabled": {
+                    "value": "{color.scooty-gray.200}"
+                }
+            }
+        }
+    }
+}
