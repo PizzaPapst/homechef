@@ -2,8 +2,6 @@ import * as React from "react"
 import { NavLink } from "react-router-dom";
 import { Book, CalendarBlank } from "@phosphor-icons/react";
 
-
-// 1. Wir lagern die komplexe Logik in eine eigene Komponente aus
 interface NavItemProps {
   to: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,34 +14,32 @@ function NavItem({ to, icon: Icon, label }: NavItemProps) {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `flex flex-col items-center gap-1 transition-all w-full ${isActive ? "text-brand-teal" : "text-text-subinfo"
+        `flex flex-col items-center gap-4 transition-all w-full ${isActive ? "text-turquoise-600" : "text-content-text-additional"
         }`
       }
     >
       {({ isActive }) => (
         <>
           <div
-            className={`px-4 py-1 rounded-full ${isActive ? "bg-teal-light" : "bg-transparent"
+            className={`px-16 py-4 rounded-full ${isActive ? "bg-turquoise-100" : "bg-transparent"
               }`}
           >
-            {/* Wir rendern das übergebene Icon dynamisch */}
             <Icon
               size={24}
               weight={isActive ? "fill" : "regular"}
-              className={isActive ? "text-brand-teal" : "text-text-subinfo"}
+              className={isActive ? "text-turquoise-600" : "text-content-text-additional"}
             />
           </div>
-          <span className={`text-xs ${isActive ? "font-semibold" : "font-medium"}`}>{label}</span>
+          <span className={`text-12 ${isActive ? "font-semibold" : "font-medium"}`}>{label}</span>
         </>
       )}
     </NavLink>
   );
 }
 
-// 2. Deine eigentliche Navigation ist jetzt extrem sauber:
 export function MobileNavigation() {
   return (
-    <nav className="fixed bottom-0 z-50 w-full bg-white border-t border-border-default px-6 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] flex justify-between items-center">
+    <nav className="fixed bottom-0 z-50 w-full bg-white border-t border-scooty-gray-200 px-24 pt-16 pb-[calc(1rem+env(safe-area-inset-bottom))] flex justify-between items-center">
 
       <NavItem
         to="/"

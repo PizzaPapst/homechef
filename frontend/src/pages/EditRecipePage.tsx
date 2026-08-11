@@ -29,22 +29,20 @@ function EditRecipePage() {
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center">
-        {/* Lade-Indikator */}
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-teal"></div>
+        <div className="animate-spin rounded-full h-48 w-48 border-b-2 border-turquoise-600"></div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="p-8 text-center">
-        <p className="text-info-error mb-4">{error}</p>
+      <div className="p-32 text-center">
+        <p className="text-bold-red-500 mb-16">{error}</p>
         <button onClick={() => navigate(-1)} className="underline">Zurück</button>
       </div>
     );
   }
 
-  // Hier ist der Trick: Wir übergeben die geladenen Daten als initialData!
   return <RecipeWizard initialData={recipe} />;
 }
 

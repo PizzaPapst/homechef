@@ -25,23 +25,23 @@ const Searchbar = React.forwardRef<HTMLInputElement, SearchbarProps>(({
         return (
             <button
                 className={cn(
-                    "flex gap-2 w-full min-h-12 items-center px-6 bg-white border border-border-default rounded-full",
+                    "flex gap-8 w-full min-h-48 items-center px-24 bg-white border border-scooty-gray-200 rounded-full",
                     className
                 )}
                 onClick={(props.onClick as React.MouseEventHandler<HTMLButtonElement>) || (() => navigate("/search"))}
             >
 
-                <MagnifyingGlass size={20} weight="bold" className="text-text-subinfo shrink-0" />
+                <MagnifyingGlass size={20} weight="bold" className="text-content-text-additional shrink-0" />
 
                 <span className={cn(
-                    "text-base font-normal truncate flex-1 text-left",
-                    (value && String(value).trim() !== "") ? "text-text-default" : "text-text-subinfo"
+                    "text-16 font-normal truncate flex-1 text-left",
+                    (value && String(value).trim() !== "") ? "text-content-text-default" : "text-content-text-additional"
                 )}>
                     {value || placeholder || "Leere Suche"}
                 </span>
 
                 {filterCount > 0 && (
-                    <span className="text-text-subinfo text-sm font-medium shrink-0">+{filterCount}</span>
+                    <span className="text-content-text-additional text-14 font-medium shrink-0">+{filterCount}</span>
                 )}
             </button>
         )
@@ -49,16 +49,16 @@ const Searchbar = React.forwardRef<HTMLInputElement, SearchbarProps>(({
 
     return (
         <div className={cn(
-            "flex items-center w-full min-h-12 px-6 bg-white border border-border-default rounded-full",
+            "flex items-center w-full min-h-48 px-24 bg-white border border-scooty-gray-200 rounded-full",
             className
         )}>
-            <Icon size={20} weight="bold" className="text-text-subinfo shrink-0 mr-2" />
+            <Icon size={20} weight="bold" className="text-content-text-additional shrink-0 mr-8" />
             <input
                 ref={ref}
                 type="text"
                 value={value}
                 placeholder={placeholder}
-                className="flex-1 bg-transparent border-none outline-none text-text-default placeholder:text-text-subinfo/60 text-base py-3"
+                className="flex-1 bg-transparent border-none outline-none text-content-text-default placeholder:text-content-text-additional/60 text-16 py-12"
                 {...props}
             />
         </div>

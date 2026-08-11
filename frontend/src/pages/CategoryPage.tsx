@@ -51,20 +51,20 @@ export default function CategoryPage() {
     }, [recipes, config]);
 
     return (
-        <div className="flex flex-col h-screen bg-bg-alternation">
+        <div className="flex flex-col h-screen bg-scooty-gray-50">
             {/* Header */}
             <Header className="px-0">
                 <div className="flex items-center">
                     <IconButton variant="ghost" onClick={() => navigate(-1)}>
                         <ArrowLeft size={20} weight="bold" />
                     </IconButton>
-                    <h1 className="text-xl text-text-primary">{config.title}</h1>
+                    <h1 className="text-22 text-turquoise-600">{config.title}</h1>
                 </div>
             </Header>
 
             {/* Results */}
-            <div className="flex-1 p-4 overflow-y-auto no-scrollbar overscroll-contain">
-                <div className="flex flex-col gap-4">
+            <div className="flex-1 p-16 overflow-y-auto no-scrollbar overscroll-contain">
+                <div className="flex flex-col gap-16">
                     {!loading && filteredRecipes.length > 0 ? (
                         filteredRecipes.map((recipe) => (
                             <RecipeCard
@@ -74,8 +74,8 @@ export default function CategoryPage() {
                             />
                         ))
                     ) : !loading && (
-                        <div className="flex flex-col items-center justify-center py-20 text-center">
-                            <p className="text-text-subinfo italic">Keine Rezepte in dieser Kategorie gefunden.</p>
+                        <div className="flex flex-col items-center justify-center py-80 text-center">
+                            <p className="text-content-text-additional italic">Keine Rezepte in dieser Kategorie gefunden.</p>
                         </div>
                     )}
                 </div>

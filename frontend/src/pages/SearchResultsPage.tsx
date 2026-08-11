@@ -87,22 +87,20 @@ export default function SearchResultsPage() {
     };
 
     return (
-        <div className="flex flex-col h-screen bg-bg-alternation">
+        <div className="flex flex-col h-screen bg-scooty-gray-50">
             {/* Header */}
             <Header className="px-0">
                 <div className="flex items-center">
                     <IconButton variant="ghost" onClick={() => navigate("/")}>
                         <ArrowLeft size={20} weight="bold" />
                     </IconButton>
-                    <h1 className="text-xl text-text-primary">Suchergebnisse</h1>
+                    <h1 className="text-22 text-turquoise-600">Suchergebnisse</h1>
                 </div>
             </Header>
 
             {/* Results */}
-
-
-            <div className="flex-1 p-4 overflow-y-auto no-scrollbar overscroll-contain">
-                <div className="flex flex-col gap-4">
+            <div className="flex-1 p-16 overflow-y-auto no-scrollbar overscroll-contain">
+                <div className="flex flex-col gap-16">
 
                     <Searchbar
                         variant="button"
@@ -117,18 +115,17 @@ export default function SearchResultsPage() {
                         filteredRecipes.map((recipe) => (
                             <RecipeCard
                                 key={recipe.id}
-                                // Hide category tags as requested
                                 recipe={{ ...recipe, categories: [] }}
                                 variant="list"
                             />
                         ))
                     ) : !loading && (
-                        <div className="flex flex-col items-center justify-center py-20 text-center">
-                            <p className="text-text-subinfo italic">Keine Rezepte gefunden.</p>
+                        <div className="flex flex-col items-center justify-center py-80 text-center">
+                            <p className="text-content-text-additional italic">Keine Rezepte gefunden.</p>
                             {activeFilterCount > 0 && (
                                 <button
                                     onClick={() => navigate("/search/results")}
-                                    className="mt-4 text-brand-teal font-medium"
+                                    className="mt-16 text-turquoise-600 font-medium"
                                 >
                                     Alle Filter zurücksetzen
                                 </button>

@@ -23,16 +23,16 @@ const IngredientFilterOverlay = ({ ingredients, selectedIngredients, onToggle, s
     }, [ingredients, selectedIngredients, searchQuery]);
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-24">
             {selectedIngredients.length > 0 && (
                 <button
                     onClick={onReset}
-                    className="text-brand-teal font-semibold text-sm self-start hover:underline"
+                    className="text-turquoise-600 font-semibold text-14 self-start hover:underline"
                 >
                     Auswahl zurücksetzen ({selectedIngredients.length})
                 </button>
             )}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-12">
                 {filteredAndSortedIngredients.map((ingredient) => (
                     <Pill
                         key={ingredient}
@@ -45,7 +45,7 @@ const IngredientFilterOverlay = ({ ingredients, selectedIngredients, onToggle, s
                     </Pill>
                 ))}
                 {filteredAndSortedIngredients.length === 0 && (
-                    <p className="text-text-subinfo italic py-10 w-full text-center">Keine Zutaten gefunden.</p>
+                    <p className="text-content-text-additional italic py-40 w-full text-center">Keine Zutaten gefunden.</p>
                 )}
             </div>
         </div>

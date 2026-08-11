@@ -50,10 +50,10 @@ export default function RecipeDetail() {
     setShowTitleInHeader(scrollTop > 320);
   };
 
-  if (loading) return <div className="p-8 text-center text-text-subinfo">Lädt...</div>;
+  if (loading) return <div className="p-32 text-center text-content-text-additional">Lädt...</div>;
   if (error) return (
-    <div className="p-8 flex flex-col items-center gap-4">
-      <p className="text-center text-info-error font-medium">{error}</p>
+    <div className="p-32 flex flex-col items-center gap-16">
+      <p className="text-center text-bold-red-500 font-medium">{error}</p>
       <Button onClick={() => navigate("/")}>Zurück zum Kochbuch</Button>
     </div>
   );
@@ -87,14 +87,14 @@ export default function RecipeDetail() {
     {
       label: "Löschen",
       onClick: handleDelete,
-      className: "text-info-error hover:bg-info-error/10",
+      className: "text-bold-red-500 hover:bg-bold-red-50",
     },
   ];
 
   return (
-    <div className="flex flex-col h-full bg-white overflow-hidden pb-20 relative">
+    <div className="flex flex-col h-full bg-white overflow-hidden pb-80 relative">
       {/* Header with Actions */}
-      <Header 
+      <Header
         className={cn(
           "absolute top-0 left-0 right-0 z-50 justify-between transition-all duration-300",
           isScrolled ? "bg-white shadow-header-shadow" : "bg-transparent shadow-none"
@@ -108,10 +108,10 @@ export default function RecipeDetail() {
         </IconButton>
 
         <div className={cn(
-          "flex-1 px-4 text-center transition-all duration-300",
-          showTitleInHeader ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
+          "flex-1 px-16 text-center transition-all duration-300",
+          showTitleInHeader ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
         )}>
-          <h2 className="text-lg font-bold truncate max-w-[200px] mx-auto">
+          <h2 className="text-18 font-bold truncate max-w-[200px] mx-auto">
             {recipe.title}
           </h2>
         </div>
@@ -126,40 +126,40 @@ export default function RecipeDetail() {
         />
       </Header>
 
-      <div 
+      <div
         className="flex-1 overflow-y-auto no-scrollbar overscroll-contain"
         onScroll={handleScroll}
       >
         {/* Hero Section */}
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-4 w-full relative">
+        <div className="flex flex-col gap-32">
+          <div className="flex flex-col gap-16 w-full relative">
             <img
               src={image}
               alt={recipe.title}
               className="object-cover w-full aspect-[4/3]"
             />
 
-            <div className="flex flex-col gap-4 w-full px-4">
-              <h1 className="text-2xl font-bold">{recipe.title}</h1>
+            <div className="flex flex-col gap-16 w-full px-16">
+              <h1 className="text-27 font-bold">{recipe.title}</h1>
 
-              <div className="flex gap-4">
-                <div className="flex items-center gap-1 text-text-subinfo">
+              <div className="flex gap-16">
+                <div className="flex items-center gap-4 text-content-text-additional">
                   <Clock size={20} />
-                  <p className="text-sm">{recipe.prepTime} Min.</p>
+                  <p className="text-14">{recipe.prepTime} Min.</p>
                 </div>
 
                 {recipe.calories > 0 && (
-                  <div className="flex items-center gap-1 text-text-subinfo">
+                  <div className="flex items-center gap-4 text-content-text-additional">
                     <Fire size={20} />
-                    <p className="text-sm">{recipe.calories} kcal</p>
+                    <p className="text-14">{recipe.calories} kcal</p>
                   </div>
                 )}
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 px-4">
-            <h2 className="font-semibold text-lg">Zutaten</h2>
+          <div className="flex flex-col gap-16 px-16">
+            <h2 className="font-semibold text-18">Zutaten</h2>
             <PortionStepper
               servings={currentServings}
               onUpdate={handlePortionChange}
@@ -177,15 +177,15 @@ export default function RecipeDetail() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 px-4 pb-12">
-            <h2 className="font-semibold text-lg">Zubereitung</h2>
-            <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-16 px-16 pb-48">
+            <h2 className="font-semibold text-18">Zubereitung</h2>
+            <div className="flex flex-col gap-16">
               {recipe.instructions && recipe.instructions.map((item: any, index: number) => (
-                <div key={index} className="flex gap-4">
-                  <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-brand-teal-10 text-brand-teal font-bold rounded-full text-xs">
+                <div key={index} className="flex gap-16">
+                  <span className="flex-shrink-0 w-24 h-24 flex items-center justify-center bg-turquoise-100 text-turquoise-600 font-bold rounded-full text-12">
                     {index + 1}
                   </span>
-                  <p className="text-text-default leading-relaxed">{item.text}</p>
+                  <p className="text-content-text-default leading-relaxed">{item.text}</p>
                 </div>
               ))}
             </div>

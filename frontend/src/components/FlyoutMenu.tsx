@@ -24,7 +24,7 @@ export function FlyoutMenu({ trigger, items, className }: FlyoutMenuProps) {
                 align="end"
                 sideOffset={8}
                 className={cn(
-                    "w-48 p-1 bg-white border-0 rounded-[8px] shadow-lg animate-in fade-in zoom-in-95 duration-100",
+                    "w-48 p-4 bg-white border-0 rounded-8 shadow-lg animate-in fade-in zoom-in-95 duration-100",
                     className
                 )}
             >
@@ -34,7 +34,7 @@ export function FlyoutMenu({ trigger, items, className }: FlyoutMenuProps) {
                             key={index}
                             onClick={item.onClick}
                             className={cn(
-                                "flex w-full items-center px-4 h-14 text-sm font-medium transition-colors hover:bg-bg-alternation text-left first:rounded-t-[8px] last:rounded-b-[8px]",
+                                "flex w-full items-center px-16 h-[56px] text-14 font-medium transition-colors hover:bg-scooty-gray-50 text-left first:rounded-t-8 last:rounded-b-8",
                                 item.className
                             )}
                         >

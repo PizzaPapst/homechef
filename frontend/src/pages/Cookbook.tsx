@@ -6,9 +6,7 @@ import { Button } from "@/components/ui/button";
 import Searchbar from "../components/ui/Searchbar";
 import Header from "../components/ui/Header";
 import { fetchAllRecipes } from "@/services/api";
-import allFoodImg from "../assets/all_food.jpg";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type RecipeAny = Record<string, any>;
 
 export default function Cookbook() {
@@ -19,14 +17,14 @@ export default function Cookbook() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full bg-bg-alternation pb-24 overflow-hidden">
+    <div className="flex flex-col h-full bg-scooty-gray-50 pb-80 overflow-hidden">
       {/* Header */}
       <Header>
-        <h1 className="text-xl text-text-primary">Kochbuch</h1>
+        <h1 className="text-22 text-turquoise-600">Rezepte</h1>
       </Header>
 
       {/* Scrollable Content */}
-      <div className="flex flex-col gap-8 flex-1 overflow-y-auto no-scrollbar p-4 overscroll-contain">
+      <div className="flex flex-col gap-32 flex-1 overflow-y-auto no-scrollbar p-16 overscroll-contain">
         <Searchbar variant="button" placeholder="Rezept suchen" />
         {/* Featured Section */}
         <section className="flex-shrink-0 flex flex-col gap-0">
@@ -38,82 +36,16 @@ export default function Cookbook() {
               isFavorite={true}
             />
           ) : (
-            <div className="h-[240px] w-full bg-bg-light-gray rounded-[16px] animate-pulse" />
+            <div className="h-[240px] w-full bg-scooty-gray-100 rounded-16 animate-pulse" />
           )}
         </section>
-        <section className="relative flex-shrink-0">
-          <RecipeSectionHeader
-            title="Schnelle Rezepte"
-            onShowAll={() => navigate("/category/schnelle-rezepte")}
-          />
-          <div className="flex gap-3 overflow-x-auto no-scrollbar">
-            {recipes.length > 0 ? (
-              recipes
-                .filter(recipe => recipe.prepTime && recipe.prepTime <= 30)
-                .slice(0, 5)
-                .map(recipe => (
-                  <RecipeCard
-                    key={`small-quick-${recipe.id}`}
-                    variant="small"
-                    recipe={recipe}
-                  />
-                ))
-            ) : (
-              [1, 2, 3].map(i => (
-                <div key={`skeleton-quick-${i}`} className="w-[160px] h-[180px] bg-bg-light-gray rounded-[12px] animate-pulse flex-shrink-0" />
-              ))
-            )}
-          </div>
-        </section>
-
-        <section className="relative flex-shrink-0">
-          <RecipeSectionHeader
-            title="Kalorienarm"
-            onShowAll={() => navigate("/category/kalorienarm")}
-          />
-          <div className="flex gap-3 overflow-x-auto no-scrollbar">
-            {recipes.length > 0 ? (
-              recipes
-                .filter(recipe => recipe.calories && recipe.calories <= 600)
-                .slice(0, 5)
-                .map(recipe => (
-                  <RecipeCard
-                    key={`small-calories-${recipe.id}`}
-                    variant="small"
-                    recipe={recipe}
-                  />
-                ))
-            ) : (
-              [1, 2, 3].map(i => (
-                <div key={`skeleton-calories-${i}`} className="w-[160px] h-[180px] bg-bg-light-gray rounded-[12px] animate-pulse flex-shrink-0" />
-              ))
-            )}
-          </div>
-        </section>
-
-        <Link
-          to="/category/all"
-          className="flex flex-col flex-shrink-0 w-full h-[180px] rounded-[16px] overflow-hidden group shadow-card-shadow bg-brand-teal"
-        >
-          <img
-            src={allFoodImg}
-            alt="Alle Rezepte"
-            className="w-full h-0 flex-1 object-cover rounded-b-2xl"
-          />
-
-          {/* Content Container */}
-          <div className="flex flex-row justify-between items-center text-text-inverted p-4">
-            <h3 className="text-xl font-semibold ">Alle Rezepte</h3>
-            <ArrowRight size={24} weight="bold" />
-          </div>
-        </Link>
       </div>
 
       {/* Floating Action Button */}
       <Button
         variant="fab"
         size="icon"
-        className="fixed bottom-24 right-4 h-16 w-16 rounded-full z-50 text-text-inverted bg-brand-teal border-none shadow-fab-shadow"
+        className="fixed bottom-80 right-16 h-64 w-64 rounded-full z-50 text-content-text-inverted bg-turquoise-600 border-none shadow-fab-shadow"
         onClick={() => navigate("/recipe/create")}
       >
         <Plus size={24} weight="bold" />

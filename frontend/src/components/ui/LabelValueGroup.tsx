@@ -12,7 +12,7 @@ export function LabelValueGroup({ label, children, className }: LabelValueGroupP
   return (
     <div className={cn("flex flex-col gap-[2px]", className)}>
       {label && (
-        <Label className="text-sm font-medium text-text-label">
+        <Label className="text-14 font-medium text-content-text-label">
           {label}
         </Label>
       )}

@@ -19,7 +19,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { LabelValueGroup } from "@/components/ui/LabelValueGroup";
 import Header from "../components/ui/Header";
 
-// Standard-Werte
 const defaultValues = {
   title: "",
   servings: 4,
@@ -36,9 +35,6 @@ const UNITS = [
   "g", "kg", "ml", "l", "Stk.", "Pck.", "Dose", "Bd.", "Zehe", "EL", "TL", "Prise", "Spritzer", "Etwas", "n. B."
 ];
 
-// Entfällt, da wir jetzt den Backend-Proxy nutzen
-// import { translateIngredients } from "@/services/translation";
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function CreateRecipeWizard({ initialData = null }: { initialData?: Record<string, any> | null }) {
   const navigate = useNavigate();
@@ -48,7 +44,6 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
   const [importUrl, setImportUrl] = useState("");
   const [openUnitIndex, setOpenUnitIndex] = useState<number | null>(null);
 
-  // Formular Setup
   const { register, control, handleSubmit, reset, trigger, setValue, watch } = useForm({
     defaultValues: initialData || defaultValues,
     mode: "onChange"
@@ -64,11 +59,8 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
     name: "instructions"
   });
 
-  // Beobachte Werte für den Custom Stepper & Combobox
   const currentServings = watch("servings");
   const watchedIngredients = watch("ingredients");
-
-  // --- LOGIK ---
 
   const handleImport = async () => {
     if (!importUrl) return;
@@ -87,27 +79,18 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
   const nextStep = async () => {
     let isValid = false;
 
-    // Schritt 2: Basisdaten prüfen
     if (step === 2) {
       isValid = await trigger(["title", "servings", "prepTime"]);
-    }
-    // Schritt 3: Zutaten prüfen + Kalorien berechnen
-    else if (step === 3) {
+    } else if (step === 3) {
       isValid = await trigger("ingredients");
       if (isValid) {
-        // Starte Kalorienberechnung im Hintergrund
         fetchCalories();
       }
-    }
-    // Schritt 4: Kalorien bestätigen
-    else if (step === 4) {
+    } else if (step === 4) {
       isValid = await trigger("calories");
-    }
-    // Schritt 5: Zubereitung
-    else if (step === 5) {
+    } else if (step === 5) {
       isValid = await trigger("instructions");
-    }
-    else {
+    } else {
       isValid = true;
     }
 
@@ -119,11 +102,8 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
     const ingredients = watchedIngredients;
     const title = watch("title");
 
-    // Namen für das Backend vorbereiten
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const namesOnly = ingredients.map((ing: any) => {
-      // Wir senden Menge + Einheit + Name als String, 
-      // damit das Backend es korrekt parsen kann.
       return `${ing.amount || ""} ${ing.unit || ""} ${ing.name}`.trim();
     });
 
@@ -162,33 +142,28 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: any) => {
-    setIsLoading(true); // Lade-Spinner aktivieren
+    setIsLoading(true);
 
     try {
-      // 1. Unterscheidung: Bearbeiten oder Neu?
-      const isEditMode = !!initialData; // true, wenn wir initialData haben
+      const isEditMode = !!initialData;
 
       const url = isEditMode
-        ? `${import.meta.env.VITE_API_URL}/recipes/${initialData.id}` // ID anhängen beim Bearbeiten
-        : `${import.meta.env.VITE_API_URL}/recipes`; // Basis-URL beim Erstellen
+        ? `${import.meta.env.VITE_API_URL}/recipes/${initialData.id}`
+        : `${import.meta.env.VITE_API_URL}/recipes`;
 
-      const method = isEditMode ? "PATCH" : "POST"; // PATCH für Update, POST für Neu
+      const method = isEditMode ? "PATCH" : "POST";
 
-      // 2. Daten bereinigen (Sicherstellen, dass Zahlen wirklich Zahlen sind)
-      // Das ist eine Sicherheitsmaßnahme, falls valueAsNumber im HTML mal fehlt
       const cleanData = {
         ...data,
         servings: Number(data.servings),
         prepTime: Number(data.prepTime),
         ingredients: data.ingredients.map((ing: any) => ({
           ...ing,
-          // Convert to number if present, otherwise set null
           amount: ing.amount ? Number(ing.amount) : null
         })),
         calories: Number(data.calories)
       };
 
-      // 3. Request senden
       const response = await fetch(url, {
         method: method,
         headers: {
@@ -201,20 +176,17 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
         throw new Error("Fehler beim Speichern des Rezepts");
       }
 
-      // 4. Erfolg!
-      // Optional: Hier könntest du noch einen Toast/Notification anzeigen
       console.log("Erfolgreich gespeichert!");
-      navigate("/"); // Zurück zur Übersicht
+      navigate("/");
 
     } catch (error) {
       console.error("Speicher-Fehler:", error);
       alert("Das Rezept konnte leider nicht gespeichert werden. Bitte versuche es erneut.");
     } finally {
-      setIsLoading(false); // Lade-Spinner deaktivieren
+      setIsLoading(false);
     }
   };
 
-  // Hilfsfunktion für den Step-Namen oben rechts
   const getStepName = () => {
     switch (step) {
       case 1: return "Import";
@@ -239,35 +211,34 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
   }, [step]);
 
   return (
-    <div className="flex flex-col h-full bg-bg-alternation overflow-hidden">
+    <div className="flex flex-col h-full bg-scooty-gray-50 overflow-hidden">
 
       {/* --- HEADER --- */}
-      <Header className="flex-col items-stretch py-4 gap-2">
+      <Header className="flex-col items-stretch py-16 gap-8">
         <div className="flex justify-between items-end">
-          <h1 className="text-sm font-medium tracking-tight">{calculateStep()}</h1>
-          <span className="text-sm text-text-subinfo font-medium">{getStepName()}</span>
+          <h1 className="text-14 font-medium tracking-tight">{calculateStep()}</h1>
+          <span className="text-14 text-content-text-additional font-medium">{getStepName()}</span>
         </div>
-        {/* Progress Bar (Design wie Screenshot 1) */}
-        <div className="h-2 w-full bg-border-default rounded-full overflow-hidden">
+        <div className="h-8 w-full bg-scooty-gray-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-brand-teal rounded-full transition-all duration-500 ease-out"
+            className="h-full bg-turquoise-600 rounded-full transition-all duration-500 ease-out"
             style={{ width: initialData ? `${((step - 1) / 4) * 100}%` : `${(step / 5) * 100}%` }}
           />
         </div>
       </Header>
 
       {/* --- CONTENT AREA --- */}
-      <div className="flex flex-1 flex-col p-4 overflow-y-auto no-scrollbar overscroll-contain">
+      <div className="flex flex-1 flex-col p-16 overflow-y-auto no-scrollbar overscroll-contain">
 
         {/* SCHRITT 1: IMPORT */}
         {step === 1 && (
-          <div className="flex flex-1 flex-col items-center text-center animate-in fade-in slide-in-from-bottom-4 gap-4 justify-center">
+          <div className="flex flex-1 flex-col items-center text-center animate-in fade-in slide-in-from-bottom-16 gap-24 justify-center">
             {isLoading ? (
-              <div className="flex flex-col items-center gap-6">
-                <div className="h-16 w-16 border-4 border-brand-teal-10 border-t-brand-teal rounded-full animate-spin"></div>
-                <div className="flex flex-col gap-2">
-                  <h2 className="text-xl font-bold">Magie im Gange...</h2>
-                  <p className="text-text-subinfo">
+              <div className="flex flex-col items-center gap-24">
+                <div className="h-64 w-64 border-4 border-turquoise-100 border-t-turquoise-600 rounded-full animate-spin"></div>
+                <div className="flex flex-col gap-8">
+                  <h2 className="text-22 font-bold">Magie im Gange...</h2>
+                  <p className="text-content-text-additional">
                     Wir extrahieren das Rezept für dich. <br />
                     Bei Videos kann das bis zu 30 Sekunden dauern.
                   </p>
@@ -275,12 +246,12 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
               </div>
             ) : (
               <>
-                <div className="bg-brand-teal-10 h-[80px] w-[80px] rounded-full flex items-center justify-center">
-                  <LinkIcon size={36} className="text-brand-teal" weight="bold" />
+                <div className="bg-turquoise-100 h-[80px] w-[80px] rounded-full flex items-center justify-center">
+                  <LinkIcon size={36} className="text-turquoise-600" weight="bold" />
                 </div>
 
-                <h2 className="text-2xl font-bold">Rezept importieren</h2>
-                <p className="text-text-subinfo leading-relaxed">
+                <h2 className="text-27 font-bold">Rezept importieren</h2>
+                <p className="text-content-text-additional leading-relaxed">
                   Füge einen Link von YouTube, Instagram, TikTok oder Chefkoch ein
                 </p>
 
@@ -292,7 +263,7 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                   />
                 </div>
 
-                <p className="text-text-subinfo">oder</p>
+                <p className="text-content-text-additional">oder</p>
 
                 <Button
                   type="button"
@@ -301,7 +272,7 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                     reset(defaultValues);
                     setStep(2);
                   }}
-                  className="w-full max-w-[200px] rounded-full border border-border-default bg-white"
+                  className="w-full max-w-[200px] rounded-full border border-scooty-gray-200 bg-white"
                 >
                   Manuell hinzufügen
                 </Button>
@@ -312,10 +283,9 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
 
         {/* SCHRITT 2: BASISDATEN */}
         {step === 2 && (
-          <div className="flex flex-col flex-1 gap-4 animate-in fade-in slide-in-from-right-8">
+          <div className="flex flex-col flex-1 gap-16 animate-in fade-in slide-in-from-right-8">
 
-            {/* Titel */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-4">
               <Label htmlFor="title">Titel</Label>
               <Input
                 id="title"
@@ -323,8 +293,7 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
               />
             </div>
 
-            {/* Zubereitungszeit (mit Icon rechts) */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-4">
               <Label htmlFor="prepTime">Zubereitungszeit</Label>
               <div className="relative">
                 <Input
@@ -332,23 +301,22 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                   type="number"
                   {...register("prepTime", { required: true })}
                 />
-                <div className="absolute inset-y-0 right-3 left-14 justify-between flex items-center gap-2 pointer-events-none text-brand-teal">
-                  <span className="text-text-subinfo pointer-events-none">Min.</span>
+                <div className="absolute inset-y-0 right-12 left-56 justify-between flex items-center gap-8 pointer-events-none text-turquoise-600">
+                  <span className="text-content-text-additional pointer-events-none">Min.</span>
                 </div>
               </div>
             </div>
 
-            {/* Portionen (Custom Stepper) */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-4">
               <Label>Portionen</Label>
-              <div className="flex items-center justify-between w-full h-[56px] px-[16px] rounded-[4px] bg-white border border-border-default">
-                <span className="text-base">{currentServings}</span>
-                <div className="flex items-center -mr-2 text-text-subinfo">
+              <div className="flex items-center justify-between w-full h-[56px] px-16 rounded-4 bg-white border border-scooty-gray-200">
+                <span className="text-16">{currentServings}</span>
+                <div className="flex items-center -mr-8 text-content-text-additional">
                   <Button
                     type="button"
                     variant="ghost"
                     onClick={() => setValue("servings", Math.max(1, currentServings - 1))}
-                    className="h-10 w-10 p-0 hover:text-brand-teal"
+                    className="h-40 w-40 p-0 hover:text-turquoise-600"
                   >
                     <Minus size={20} weight="bold" />
                   </Button>
@@ -356,7 +324,7 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                     type="button"
                     variant="ghost"
                     onClick={() => setValue("servings", currentServings + 1)}
-                    className="h-10 w-10 p-0 hover:text-brand-teal"
+                    className="h-40 w-40 p-0 hover:text-turquoise-600"
                   >
                     <Plus size={20} weight="bold" />
                   </Button>
@@ -364,8 +332,7 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
               </div>
             </div>
 
-            {/* Bild URL */}
-            <div className="flex flex-col flex-1 gap-1">
+            <div className="flex flex-col flex-1 gap-4">
               <Label htmlFor="imageUrl">Bild URL</Label>
               <Input id="imageUrl" {...register("imageUrl")} placeholder="https://..." />
             </div>
@@ -374,25 +341,23 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
 
         {/* SCHRITT 3: ZUTATEN */}
         {step === 3 && (
-          <div className="flex flex-col flex-1 gap-8 animate-in fade-in slide-in-from-right-8">
-            <div className="flex flex-col gap-4">
+          <div className="flex flex-col flex-1 gap-32 animate-in fade-in slide-in-from-right-8">
+            <div className="flex flex-col gap-16">
               {ingredientFields.map((field, index) => (
-                <div key={field.id} className="flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2">
+                <div key={field.id} className="flex items-center gap-8 animate-in fade-in slide-in-from-bottom-8">
 
-                  {/* Input Box Container */}
-                  <div className="flex-1 flex flex-col border border-border-default rounded-lg bg-white shadow-sm">
-                    {/* Top Row: Amount & Unit */}
-                    <div className="flex border-b border-border-default h-14">
+                  <div className="flex-1 flex flex-col border border-scooty-gray-200 rounded-8 bg-white shadow-sm">
+                    <div className="flex border-b border-scooty-gray-200 h-[56px]">
                       {watchedIngredients?.[index]?.unit !== "Etwas" && watchedIngredients?.[index]?.unit !== "n. B." && (
                         <>
-                          <div className="w-[33%] flex items-center px-4">
+                          <div className="w-[33%] flex items-center px-16">
                             <input
                               placeholder="Menge"
                               {...register(`ingredients.${index}.amount`)}
-                              className="w-full text-lg focus:outline-none placeholder:text-text-subinfo"
+                              className="w-full text-18 focus:outline-none placeholder:text-content-text-additional"
                             />
                           </div>
-                          <div className="w-px bg-border-default h-full"></div>
+                          <div className="w-px bg-scooty-gray-200 h-full"></div>
                         </>
                       )}
 
@@ -402,11 +367,10 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                           {...register(`ingredients.${index}.unit`)}
                           onFocus={() => setOpenUnitIndex(index)}
                           onBlur={() => setTimeout(() => setOpenUnitIndex(null), 300)}
-                          className="w-full h-full px-4 text-lg focus:outline-none placeholder:text-text-subinfo bg-transparent"
+                          className="w-full h-full px-16 text-18 focus:outline-none placeholder:text-content-text-additional bg-transparent"
                           autoComplete="off"
                         />
 
-                        {/* Custom Flyout / Combobox Options */}
                         {openUnitIndex === index && (() => {
                           const currentUnitValue = watchedIngredients?.[index]?.unit || "";
                           const filteredUnits = UNITS.filter(u =>
@@ -416,8 +380,8 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                           if (filteredUnits.length === 0 && currentUnitValue !== "") return null;
 
                           return (
-                            <div className="absolute top-full left-0 right-0 z-[100] mt-1 bg-white border border-border-default rounded shadow-card-shadow max-h-[192px] overflow-y-auto animate-in fade-in zoom-in-95 duration-200">
-                              <div className="py-1">
+                            <div className="absolute top-full left-0 right-0 z-[100] mt-4 bg-white border border-scooty-gray-200 rounded-4 shadow-card-shadow max-h-[192px] overflow-y-auto animate-in fade-in zoom-in-95 duration-200">
+                              <div className="py-4">
                                 {(filteredUnits.length > 0 ? filteredUnits : UNITS).map(unit => (
                                   <Button
                                     key={unit}
@@ -427,7 +391,7 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                                       setValue(`ingredients.${index}.unit`, unit);
                                       setOpenUnitIndex(null);
                                     }}
-                                    className="w-full justify-start rounded-none h-auto py-3 px-4 text-left font-normal"
+                                    className="w-full justify-start rounded-none h-auto py-12 px-16 text-left font-normal"
                                   >
                                     {unit}
                                   </Button>
@@ -439,23 +403,21 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                       </div>
                     </div>
 
-                    {/* Bottom Row: Name */}
-                    <div className="h-14 flex items-center px-4">
+                    <div className="h-[56px] flex items-center px-16">
                       <input
                         placeholder="Zutat"
                         {...register(`ingredients.${index}.name`, { required: true })}
-                        className="w-full text-lg focus:outline-none placeholder:text-text-subinfo"
+                        className="w-full text-18 focus:outline-none placeholder:text-content-text-additional"
                       />
                     </div>
                   </div>
 
-                  {/* Delete Button */}
                   <Button
                     type="button"
                     variant="destructive"
                     size="icon"
                     onClick={() => removeIngredient(index)}
-                    className="p-2"
+                    className="p-8"
                   >
                     <Trash size={20} />
                   </Button>
@@ -463,12 +425,11 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
               ))}
             </div>
 
-            {/* Add Button */}
             <Button
               type="button"
               variant="ghost"
               onClick={() => appendIngredient({ amount: "", unit: "", name: "" })}
-              className="flex items-center gap-2 font-medium"
+              className="flex items-center gap-8 font-medium"
             >
               <Plus size={20} weight="bold" /> Zutat hinzufügen
             </Button>
@@ -477,13 +438,13 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
 
         {/* SCHRITT 4: KALORIEN */}
         {step === 4 && (
-          <div className="flex flex-col flex-1 gap-8 animate-in fade-in slide-in-from-right-8">
-            <div className="flex flex-1 flex-col items-center text-center gap-4 justify-center">
-              <div className="bg-brand-teal-10 h-[80px] w-[80px] rounded-full flex items-center justify-center">
-                <Clock size={36} className="text-brand-teal" weight="bold" />
+          <div className="flex flex-col flex-1 gap-32 animate-in fade-in slide-in-from-right-8">
+            <div className="flex flex-1 flex-col items-center text-center gap-16 justify-center">
+              <div className="bg-turquoise-100 h-[80px] w-[80px] rounded-full flex items-center justify-center">
+                <Clock size={36} className="text-turquoise-600" weight="bold" />
               </div>
-              <h2 className="text-2xl font-bold">Kalorien überprüfen</h2>
-              <p className="text-text-subinfo leading-relaxed">
+              <h2 className="text-27 font-bold">Kalorien überprüfen</h2>
+              <p className="text-content-text-additional leading-relaxed">
                 Basierend auf deinen Zutaten haben wir die Kalorien geschätzt. Du kannst diese hier anpassen.
               </p>
               <LabelValueGroup label="Kalorien (kcal)" className="w-full text-left">
@@ -492,7 +453,7 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                   type="number"
                   {...register("calories")}
                   className=""
-                  endAdornment={isCalculatingCalories && <Spinner size={20} className="animate-spin text-brand-teal" />}
+                  endAdornment={isCalculatingCalories && <Spinner size={20} className="animate-spin text-turquoise-600" />}
                 />
               </LabelValueGroup>
             </div>
@@ -501,11 +462,10 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
 
         {/* SCHRITT 5: ZUBEREITUNG */}
         {step === 5 && (
-          <div className="flex flex-col flex-1 gap-8 animate-in fade-in slide-in-from-right-8">
+          <div className="flex flex-col flex-1 gap-32 animate-in fade-in slide-in-from-right-8">
             {instructionFields.map((field, index) => (
-              <div key={field.id} className="flex flex-col gap-2">
+              <div key={field.id} className="flex flex-col gap-8">
 
-                {/* Header Zeile: Schritt Nummer links, Löschen rechts */}
                 <div className="flex justify-between items-center">
                   <Label className="">
                     Schritt {index + 1}
@@ -516,44 +476,41 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
                     variant="destructive"
                     size="sm"
                     onClick={() => removeInstruction(index)}
-                    className="flex items-center gap-1.5 text-xs h-8 px-2"
+                    className="flex items-center gap-4 text-12 h-32 px-8"
                   >
                     <Trash size={16} weight="regular" /> Schritt löschen
                   </Button>
                 </div>
 
-                {/* Das Textfeld */}
                 <Textarea
                   {...register(`instructions.${index}.text`, { required: true })}
-                  className="w-full max-w-full min-h-[140px] max-h-[calc(100dvh-200px)] [field-sizing:content] overflow-y-auto break-all text-base leading-relaxed border-border-default rounded-xl focus-visible:ring-brand-teal bg-white resize-none p-4 shadow-sm"
+                  className="w-full max-w-full min-h-[140px] max-h-[calc(100dvh-200px)] [field-sizing:content] overflow-y-auto break-all text-16 leading-relaxed border-scooty-gray-200 rounded-12 focus-visible:ring-turquoise-500 bg-white resize-none p-16 shadow-sm"
                   placeholder="Beschreibe, was in diesem Schritt passiert..."
                 />
               </div>
             ))}
 
-            {/* Button zum Hinzufügen (Ganz unten) */}
             <Button
               type="button"
               variant="ghost"
               onClick={() => appendInstruction({ step: instructionFields.length + 1, text: "" })}
-              className="flex items-center gap-2 font-medium mt-2"
+              className="flex items-center gap-8 font-medium mt-8"
             >
               <Plus size={20} weight="bold" /> Schritt hinzufügen
             </Button>
 
-            {/* Platzhalter unten, damit der Footer nichts verdeckt beim Scrollen */}
-            <div className="h-4"></div>
+            <div className="h-16"></div>
           </div>
         )}
 
       </div>
 
       {/* --- FOOTER --- */}
-      <div className="flex-none p-4 bg-white border-t border-border-default flex justify-between items-center z-20">
+      <div className="flex-none p-16 bg-white border-t border-scooty-gray-200 flex justify-between items-center z-20">
         <Button
           variant="ghost"
           onClick={prevStep}
-          className="flex items-center gap-2"
+          className="flex items-center gap-8"
         >
           <ArrowLeft size={16} weight="bold" />
           {step === 1 ? "Abbrechen" : "Zurück"}
@@ -564,7 +521,7 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
             variant="primary"
             onClick={step === 1 ? handleImport : nextStep}
             disabled={step === 1 && !importUrl}
-            className="flex items-center gap-2"
+            className="flex items-center gap-8"
           >
             {step === 1 ? "Import" : "Weiter"} <ArrowRight size={16} weight="bold" />
           </Button>
@@ -572,7 +529,7 @@ export default function CreateRecipeWizard({ initialData = null }: { initialData
           <Button
             variant="primary"
             onClick={handleSubmit(onSubmit)}
-            className="flex items-center gap-2"
+            className="flex items-center gap-8"
           >
             Fertigstellen <Check size={16} weight="bold" />
           </Button>

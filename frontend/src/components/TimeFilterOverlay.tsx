@@ -15,14 +15,14 @@ const timeOptions = [
 
 const TimeFilterOverlay = ({ selectedTime, onSelect }: TimeFilterOverlayProps) => {
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-24">
             <button
                 onClick={() => onSelect(null)}
-                className="text-brand-teal font-semibold text-sm self-start hover:underline"
+                className="text-turquoise-600 font-semibold text-14 self-start hover:underline"
             >
                 Filter zurücksetzen
             </button>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-12">
                 {timeOptions.map((option) => (
                     <Pill
                         key={option.label}

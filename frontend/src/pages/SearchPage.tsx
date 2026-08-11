@@ -30,7 +30,6 @@ export default function SearchPage() {
     const [activeFilter, setActiveFilter] = useState<string | null>(null);
     const [ingredientSearch, setIngredientSearch] = useState("");
 
-    // Initialize state from URL if present
     const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
     const [selectedTime, setSelectedTime] = useState<number | null>(searchParams.get("time") ? parseInt(searchParams.get("time")!) : null);
     const [selectedIngredients, setSelectedIngredients] = useState<string[]>(
@@ -46,7 +45,6 @@ export default function SearchPage() {
         const loadHistory = async () => {
             let history = await fetchRecentSearches();
 
-            // Check if we arrived from results and need to "activate" and "delete" the current search from history
             if (searchParams.get("from_results") === "true") {
                 const term = searchParams.get("q") || "";
                 const time = searchParams.get("time") ? parseInt(searchParams.get("time")!) : null;
@@ -72,7 +70,6 @@ export default function SearchPage() {
 
     const searchInputRef = useRef<HTMLInputElement>(null);
 
-    // Auto-focus the search input on mount
     useEffect(() => {
         if (searchInputRef.current) {
             searchInputRef.current.focus();
@@ -167,24 +164,24 @@ export default function SearchPage() {
                     <IconButton variant="ghost" onClick={() => navigate("/")}>
                         <ArrowLeft size={20} weight="bold" />
                     </IconButton>
-                    <h1 className="text-xl text-text-primary">Suche</h1>
+                    <h1 className="text-22 text-turquoise-600">Suche</h1>
                 </div>
             </Header>
 
             {/* Body / Filter Section */}
-            <div className="flex flex-col gap-8 p-4 flex-1 overflow-y-auto no-scrollbar bg-bg-alternation overscroll-contain">
+            <div className="flex flex-col gap-32 p-16 flex-1 overflow-y-auto no-scrollbar bg-scooty-gray-50 overscroll-contain">
                 <Searchbar
                     ref={searchInputRef}
                     variant="default"
                     placeholder="Rezept suchen"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="focus-within:ring-2 focus-within:ring-brand-teal/10"
+                    className="focus-within:ring-2 focus-within:ring-turquoise-500/10"
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') handleSearch(searchQuery);
                     }}
                 />
-                <div className="flex gap-2 overflow-x-auto no-scrollbar shrink-0">
+                <div className="flex gap-8 overflow-x-auto no-scrollbar shrink-0">
                     <Pill onClick={() => setActiveFilter('time')} active={!!selectedTime}>
                         {getFilterLabel('time')}
                     </Pill>
@@ -199,24 +196,24 @@ export default function SearchPage() {
                     </Pill>
                 </div>
 
-                <div className="flex flex-col gap-4">
-                    <div className="flex flex-col gap-3">
-                        <h3 className="text-sm font-medium text-text-default font-['Poppins']">Letzte Suchanfragen</h3>
-                        <div className="flex flex-col rounded-sm overflow-hidden border border-border-default">
+                <div className="flex flex-col gap-16">
+                    <div className="flex flex-col gap-12">
+                        <h3 className="text-14 font-medium text-content-text-default">Letzte Suchanfragen</h3>
+                        <div className="flex flex-col rounded-sm overflow-hidden border border-scooty-gray-200">
                             {recentSearches.map((item, index) => (
                                 <button
                                     key={index}
-                                    className=" bg-white flex justify-between items-center px-3 min-h-12 border-b border-white last:border-b-0"
+                                    className=" bg-white flex justify-between items-center px-12 min-h-48 border-b border-white last:border-b-0"
                                     onClick={() => handleSearch(item.term, item.filters)}
                                 >
-                                    <span className={`text-sm ${item.term ? 'text-text-default' : 'text-text-subinfo'}`}>{item.term || "Leere Suche"}</span>
+                                    <span className={`text-14 ${item.term ? 'text-content-text-default' : 'text-content-text-additional'}`}>{item.term || "Leere Suche"}</span>
                                     {item.filterCount > 0 && (
-                                        <span className="text-text-subinfo text-sm font-medium">+{item.filterCount}</span>
+                                        <span className="text-content-text-additional text-14 font-medium">+{item.filterCount}</span>
                                     )}
                                 </button>
                             ))}
                             {recentSearches.length === 0 && (
-                                <p className="text-sm text-text-subinfo italic py-2">Keine Suchhistorie vorhanden.</p>
+                                <p className="text-14 text-content-text-additional italic py-8">Keine Suchhistorie vorhanden.</p>
                             )}
                         </div>
                     </div>
@@ -224,10 +221,10 @@ export default function SearchPage() {
             </div>
 
             {/* Footer */}
-            <div className="p-4 bg-white flex flex-col items-center gap-4 border-t border-border-default">
+            <div className="p-16 bg-white flex flex-col items-center gap-16 border-t border-scooty-gray-200">
                 {activeFilterCount > 0 || searchQuery ? (
                     <button
-                        className="text-info-error font-base hover:underline"
+                        className="text-bold-red-500 font-base hover:underline"
                         onClick={() => {
                             setSearchQuery("");
                             setSelectedTime(null);
@@ -239,7 +236,7 @@ export default function SearchPage() {
                         Suche zurücksetzen
                     </button>
                 ) : (
-                    <div className="h-5" />
+                    <div className="h-20" />
                 )}
 
                 <Button
