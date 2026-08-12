@@ -43,5 +43,28 @@
                 }
             }
         }
+    },
+    "header": {
+        "color": {
+            "content": {
+                    "default": {
+                        "value": "{color.content.text.default}"
+                    }                    
+                },
+            "border": {
+                    "default": {
+                        "value": "{color.border.surface.neutral-elevated}"
+                    }
+                    
+                },
+                "background": {
+                    "default": {
+                        "value": "{color.muted-turquoise.500}"
+                    },
+                    "quiet": {
+                        "value": "{color.muted-turquoise.600}"
+                    }                 
+                }
+        }
     }
 }

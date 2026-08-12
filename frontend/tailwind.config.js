@@ -19,5 +19,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [...(uiConfig.plugins || []), require("tailwindcss-animate")],
 }

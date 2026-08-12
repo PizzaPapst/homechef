@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Plus, ArrowRight } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import Searchbar from "../components/ui/Searchbar";
-import Header from "../components/ui/Header";
 import { fetchAllRecipes } from "@/services/api";
+import { Header } from '@homechef/ui';
 
 type RecipeAny = Record<string, any>;
 
@@ -20,7 +20,7 @@ export default function Cookbook() {
     <div className="flex flex-col h-full bg-scooty-gray-50 pb-80 overflow-hidden">
       {/* Header */}
       <Header>
-        <h1 className="text-22 text-turquoise-600">Rezepte</h1>
+        <h1 className="typography-heading-medium text-content-text-default">Rezepte</h1>
       </Header>
 
       {/* Scrollable Content */}

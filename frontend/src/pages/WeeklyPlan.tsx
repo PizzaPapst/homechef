@@ -8,8 +8,6 @@ import { de } from "date-fns/locale";
 import { getAllMealPlans } from "@/services/api";
 import { RecipeCard } from "../components/RecipeCard";
 
-import Header from "../components/ui/Header";
-
 export default function WeeklyPlan() {
 
   const navigate = useNavigate();
@@ -35,9 +33,9 @@ export default function WeeklyPlan() {
   return (
     <div className="flex flex-col h-full bg-scooty-gray-50 pb-80 overflow-hidden">
       {/* Header */}
-      <Header>
+      {/* <Header>
         <h1 className="text-22 text-turquoise-600">Wochenplan</h1>
-      </Header>
+      </Header> */}
 
       {/* Content */}
       <div className="flex flex-col gap-24 p-16 flex-1 overflow-y-auto no-scrollbar overscroll-contain">

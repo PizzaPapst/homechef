@@ -556,23 +556,23 @@
       },
       "font-weight": {
         "Light": {
-          "value": "300px"
+          "value": "300"
 
         },
         "Regular": {
-          "value": "400px"
+          "value": "400"
 
         },
         "Medium": {
-          "value": "500px"
+          "value": "500"
 
         },
         "SemiBold": {
-          "value": "600px"
+          "value": "600"
 
         },
         "Bold": {
-          "value": "700px"
+          "value": "700"
 
         }
       }

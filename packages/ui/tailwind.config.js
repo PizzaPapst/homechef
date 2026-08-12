@@ -179,6 +179,22 @@ export default {
             },
           },
         },
+
+        // Header-spezifische Tokens
+        header: {
+          color: {
+            content: {
+              default: 'var(--header-color-content-default)',
+            },
+            border: {
+              default: 'var(--header-color-border-default)',
+            },
+            background: {
+              default: 'var(--header-color-background-default)',
+              quiet: 'var(--header-color-background-quiet)',
+            },
+          },
+        },
       },
       
       // Typography Tokens
@@ -288,5 +304,52 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addComponents }) {
+      addComponents({
+        '.typography-body-small': {
+          'font-size': 'var(--typography-font-size-13)',
+          'line-height': 'var(--typography-line-height-14)',
+          'letter-spacing': 'var(--typography-letter-spacing-0)',
+          'font-weight': 'var(--typography-font-weight-regular)',
+          'font-family': 'Poppins, sans-serif',
+        },
+        '.typography-body-medium': {
+          'font-size': 'var(--typography-font-size-16)',
+          'line-height': 'var(--typography-line-height-25)',
+          'letter-spacing': 'var(--typography-letter-spacing-0)',
+          'font-weight': 'var(--typography-font-weight-regular)',
+          'font-family': 'Poppins, sans-serif',
+        },
+        '.typography-heading-small': {
+          'font-size': 'var(--typography-font-size-19)',
+          'line-height': 'var(--typography-line-height-25)',
+          'letter-spacing': 'var(--typography-letter-spacing-0)',
+          'font-weight': 'var(--typography-font-weight-bold)',
+          'font-family': 'Poppins, sans-serif',
+        },
+        '.typography-heading-small-emph': {
+          'font-size': 'var(--typography-font-size-19)',
+          'line-height': 'var(--typography-line-height-25)',
+          'letter-spacing': 'var(--typography-letter-spacing-0)',
+          'font-weight': 'var(--typography-font-weight-medium)',
+          'font-family': 'Poppins, sans-serif',
+        },
+        '.typography-heading-medium': {
+          'font-size': 'var(--typography-font-size-23)',
+          'line-height': 'var(--typography-line-height-36)',
+          'letter-spacing': 'var(--typography-letter-spacing-0)',
+          'font-weight': 'var(--typography-font-weight-bold)',
+          'font-family': 'Poppins, sans-serif',
+        },
+        '.typography-heading-large': {
+          'font-size': 'var(--typography-font-size-28)',
+          'line-height': 'var(--typography-line-height-44)',
+          'letter-spacing': 'var(--typography-letter-spacing-0)',
+          'font-weight': 'var(--typography-font-weight-bold)',
+          'font-family': 'Poppins, sans-serif',
+        },
+      });
+    },
+  ],
 }

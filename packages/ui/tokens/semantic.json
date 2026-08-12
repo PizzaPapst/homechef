@@ -78,6 +78,152 @@
                 "disabled": {
                     "value": "{color.scooty-gray.200}"
                 }
+            },
+            "surface": {
+                "neutral-default": {
+                    "value": "{color.white}"
+                },
+                "neutral-elevated": {
+                    "value": "{color.scooty-gray.50}"
+                },
+                "inverted": {
+                    "value": "{color.black}"
+                }
+            }
+        },
+        "border": {
+            "surface": {
+                "neutral-default": {
+                    "value": "{color.white}"
+                },
+                "neutral-elevated": {
+                    "value": "{color.scooty-gray.300}"
+                },
+                "inverted": {
+                    "value": "{color.black}"
+                }
+            }
+        }
+    },
+    "typography": {
+        "body-small": {
+            "font-size": {
+                "value": "{typography.font-size.13}"
+            },
+            "line-height": {
+                "value": "{typography.line-height.14}"
+            },
+            "letter-spacing": {
+                "value": "{typography.letter-spacing.0}"
+            },
+            "font-weight": {
+                "value": "{typography.font-weight.Regular}"
+            },
+            "font-family": {
+                "value": "DM Sans"
+            },
+            "text-transform": {
+                "value": "none"
+            }
+        },
+        "body-medium": {
+            "font-size": {
+                "value": "{typography.font-size.16}"
+            },
+            "line-height": {
+                "value": "{typography.line-height.25}"
+            },
+            "letter-spacing": {
+                "value": "{typography.letter-spacing.0}"
+            },
+            "font-weight": {
+                "value": "{typography.font-weight.Regular}"
+            },
+            "font-family": {
+                "value": "Poppins"
+            },
+            "text-transform": {
+                "value": "none"
+            }
+        },
+        "heading-small": {
+            "font-size": {
+                "value": "{typography.font-size.19}"
+            },
+            "line-height": {
+                "value": "{typography.line-height.25}"
+            },
+            "letter-spacing": {
+                "value": "{typography.letter-spacing.0}"
+            },
+            "font-weight": {
+                "value": "{typography.font-weight.Bold}"
+            },
+            "font-family": {
+                "value": "Poppins"
+            },
+            "text-transform": {
+                "value": "none"
+            }
+        },
+        "heading-small-emph": {
+            "font-size": {
+                "value": "{typography.font-size.19}"
+            },
+            "line-height": {
+                "value": "{typography.line-height.25}"
+            },
+            "letter-spacing": {
+                "value": "{typography.letter-spacing.0}"
+            },
+            "font-weight": {
+                "value": "{typography.font-weight.Medium}"
+            },
+            "font-family": {
+                "value": "Poppins"
+            },
+            "text-transform": {
+                "value": "none"
+            }
+        },
+        "heading-medium": {
+            "font-size": {
+                "value": "{typography.font-size.23}"
+            },
+            "line-height": {
+                "value": "{typography.line-height.36}"
+            },
+            "letter-spacing": {
+                "value": "{typography.letter-spacing.0}"
+            },
+            "font-weight": {
+                "value": "{typography.font-weight.Bold}"
+            },
+            "font-family": {
+                "value": "DM Sans"
+            },
+            "text-transform": {
+                "value": "none"
+            }
+        },
+        "heading-large": {
+            "font-size": {
+                "value": "{typography.font-size.28}"
+            },
+            "line-height": {
+                "value": "{typography.line-height.44}"
+            },
+            "letter-spacing": {
+                "value": "{typography.letter-spacing.0}"
+            },
+            "font-weight": {
+                "value": "{typography.font-weight.Bold}"
+            },
+            "font-family": {
+                "value": "Poppins"
+            },
+            "text-transform": {
+                "value": "none"
             }
         }
     }
