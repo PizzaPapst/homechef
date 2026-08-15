@@ -1,4 +1,4 @@
-import type React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
 import { Badge, type BadgeVariant } from '../Badge/Badge';
 
@@ -16,6 +16,7 @@ export interface RecipeCardProps {
     id?: string | number;
     title?: string;
     imageUrl?: string;
+    image?: string;
     prepTime?: string | number;
     categories?: Array<{ id: string | number; name: string }>;
   };
@@ -54,7 +55,25 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   const derivedBadges: RecipeBadge[] = propsBadges ||
     (recipe?.categories?.map((cat) => ({ id: cat.id, label: cat.name })) ?? []);
 
-  const image = propsImageUrl || recipe?.imageUrl || DEFAULT_PLACEHOLDER_IMAGE;
+  const rawImage = propsImageUrl || recipe?.imageUrl || recipe?.image;
+  const initialImage = (typeof rawImage === 'string' && rawImage.trim().length > 0)
+    ? rawImage
+    : DEFAULT_PLACEHOLDER_IMAGE;
+
+  const [imgSrc, setImgSrc] = useState<string>(initialImage);
+
+  useEffect(() => {
+    const nextImg = (typeof rawImage === 'string' && rawImage.trim().length > 0)
+      ? rawImage
+      : DEFAULT_PLACEHOLDER_IMAGE;
+    setImgSrc(nextImg);
+  }, [rawImage]);
+
+  const handleImageError = () => {
+    if (imgSrc !== DEFAULT_PLACEHOLDER_IMAGE) {
+      setImgSrc(DEFAULT_PLACEHOLDER_IMAGE);
+    }
+  };
 
   const ContainerWrapper: React.FC<{ children: React.ReactNode; wrapperClass?: string }> = ({ children, wrapperClass = '' }) => {
     if (renderLink) {
@@ -66,10 +85,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   // --- LARGE SIZE (Featured / Hero) ---
   if (size === 'large') {
     return (
-      <ContainerWrapper wrapperClass={`relative w-full h-[240px] rounded-16 overflow-hidden text-content-text-inverted ${className}`}>
+      <ContainerWrapper wrapperClass={`block relative w-full h-[240px] rounded-16 overflow-hidden bg-scooty-gray-200 text-content-text-inverted ${className}`}>
         <img
-          src={image}
+          src={imgSrc}
           alt={title}
+          onError={handleImageError}
           className="absolute inset-0 w-full h-full object-cover"
         />
 
@@ -102,11 +122,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
   // --- SMALL SIZE (Standard Grid / Horizontal) ---
   return (
-    <div className={`w-full max-w-[180px] ${className}`}>
-      <ContainerWrapper wrapperClass="relative w-full aspect-[180/140]  rounded-12 overflow-hidden text-content-text-inverted">
+    <div className={`w-full max-w-[180px]  ${className}`}>
+      <ContainerWrapper wrapperClass="block relative w-full aspect-[180/140] rounded-12 overflow-hidden bg-scooty-gray-200 text-content-text-inverted">
         <img
-          src={image}
+          src={imgSrc}
           alt={title}
+          onError={handleImageError}
           className="absolute inset-0 w-full h-full object-cover"
         />
 
