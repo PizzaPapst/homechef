@@ -1,27 +1,30 @@
 import { Injectable, Logger } from '@nestjs/common';
+import OpenAI from 'openai';
 import { SEARCHABLE_BASE_INGREDIENTS, INGREDIENT_BLACKLIST } from '../recipes/ingredient-config';
-import * as fs from 'fs';
 
 @Injectable()
 export class AiService {
   private readonly logger = new Logger(AiService.name);
+  private openai: OpenAI | null = null;
+  private readonly DASHSCOPE_KEY = process.env.DASHSCOPE_API_KEY;
+  private readonly OLLAMA_URL =
+    process.env.OLLAMA_URL || 'http://localhost:11434/api/generate';
 
   constructor() {
-    const key = process.env.GEMINI_API_KEY;
-    if (key) {
+    if (this.DASHSCOPE_KEY) {
       this.logger.log(
-        `✅ Gemini API Key gefunden! (Startet mit: ${key.substring(0, 5)}...)`,
+        `✅ DashScope (Qwen) API Key gefunden! (Startet mit: ${this.DASHSCOPE_KEY.substring(0, 8)}...)`,
       );
+      this.openai = new OpenAI({
+        apiKey: this.DASHSCOPE_KEY,
+        baseURL: 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1',
+      });
     } else {
       this.logger.warn(
-        '❌ Kein Gemini API Key gefunden. Nutze Fallback auf Ollama.',
+        '❌ Kein DashScope API Key gefunden. Nutze Fallback auf Ollama.',
       );
     }
   }
-
-  private readonly OLLAMA_URL =
-    process.env.OLLAMA_URL || 'http://localhost:11434/api/generate';
-  private readonly GEMINI_KEY = process.env.GEMINI_API_KEY;
 
   async parseRecipeFromSocialMedia(
     metadata: { title: string; description: string },
@@ -65,11 +68,7 @@ export class AiService {
         ${metadata.description}${transcriptSection}
       `;
 
-    if (this.GEMINI_KEY) {
-      return this.askGemini(prompt, null);
-    } else {
-      return this.askOllama(prompt);
-    }
+    return this.askAI(prompt);
   }
 
   async parseRecipeFromHtml(textContext: string): Promise<any> {
@@ -100,11 +99,7 @@ export class AiService {
         ${cleanText}
       `;
 
-    if (this.GEMINI_KEY) {
-      return this.askGemini(prompt);
-    } else {
-      return this.askOllama(prompt);
-    }
+    return this.askAI(prompt);
   }
 
   async categorizeIngredients(ingredients: string[]): Promise<{ name: string; base_ingredient: string | null }[] | null> {
@@ -129,93 +124,49 @@ export class AiService {
     `;
 
     try {
-      if (this.GEMINI_KEY) {
-        return this.askGemini(prompt);
-      } else {
-        return this.askOllama(prompt);
-      }
+      return await this.askAI(prompt);
     } catch (e) {
       return null;
     }
   }
 
-  private async askGemini(prompt: string, audioPath: string | null = null) {
-    // Primär: Gemini 2.0 Flash (JSON-Modus), Fallback: Gemma 3 27B (kein JSON-Modus)
-    const models = [
-      { id: 'gemini-2.0-flash', jsonMode: true },
-      { id: 'gemma-3-27b-it', jsonMode: false },
-    ];
+  private async askAI(prompt: string): Promise<any> {
+    // 1. Primär: qwen3.7-flash, 2. Fallback: qwen3.6-flash
+    const qwenModels = ['qwen3.7-flash', 'qwen3.6-flash'];
 
-    const parts: any[] = [{ text: prompt }];
-    const hasAudio = audioPath && fs.existsSync(audioPath);
-
-    if (hasAudio) {
-      this.logger.log(`Hänge Audio an Request an: ${audioPath}`);
-      const audioBase64 = fs.readFileSync(audioPath).toString('base64');
-      parts.push({ inline_data: { mime_type: 'audio/mp3', data: audioBase64 } });
-    }
-
-    let lastError: any;
-
-    for (const model of models) {
-      this.logger.log(`Nutze Modell: ${model.id}`);
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model.id}:generateContent?key=${this.GEMINI_KEY}`;
-
-      const body: any = { contents: [{ parts }], generationConfig: {} };
-      if (model.jsonMode) {
-        body.generationConfig.responseMimeType = 'application/json';
-      }
-
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-
-        if (!response.ok) {
-          const errorText = await response.text();
-          const errorData = JSON.parse(errorText);
-          const status = errorData?.error?.code;
-
-          this.logger.error(`${model.id} Fehler (${status}): ${errorData?.error?.message}`);
-
-          // Nur bei Quota-Fehler (429) → nächstes Modell versuchen
-          if (status === 429) {
-            this.logger.warn(`Quota erschöpft für ${model.id} → Fallback...`);
-            lastError = new Error(errorData?.error?.message);
-            continue;
-          }
-
-          throw new Error(`API Error ${status}: ${errorData?.error?.message}`);
+    if (this.openai) {
+      for (const model of qwenModels) {
+        try {
+          return await this.askQwen(prompt, model);
+        } catch (err: any) {
+          this.logger.warn(`Modell ${model} fehlgeschlagen: ${err?.message} → Versuche nächstes Modell...`);
         }
-
-        const data = await response.json();
-
-        if (!data.candidates || data.candidates.length === 0) {
-          throw new Error('Keine Antwort vom Modell erhalten.');
-        }
-
-        const textResponse = data.candidates[0].content.parts[0].text;
-
-        // JSON aus Markdown-Codeblock extrahieren falls nötig (bei Modellen ohne JSON-Modus)
-        const cleanJson = textResponse.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-        const parsed = JSON.parse(cleanJson);
-
-        this.logger.log(`✅ Erfolg mit Modell: ${model.id}`);
-        return parsed;
-      } catch (error: any) {
-        if (error.message?.includes('Quota') || error.message?.includes('429')) {
-          lastError = error;
-          continue;
-        }
-        this.logger.error(`Fehler mit ${model.id}: ${error.message}`);
-        throw error;
       }
     }
 
-    this.logger.error('Alle Modelle erschöpft oder fehlgeschlagen.');
-    throw lastError ?? new Error('Keine KI-Modelle verfügbar.');
+    // 3. Fallback: Ollama
+    return await this.askOllama(prompt);
+  }
+
+  private async askQwen(prompt: string, model: string = 'qwen3.7-flash'): Promise<any> {
+    this.logger.log(`Nutze Modell: ${model} (DashScope)`);
+    if (!this.openai) throw new Error('OpenAI Client für DashScope nicht initialisiert.');
+
+    const completion = await this.openai.chat.completions.create({
+      model: model,
+      messages: [{ role: 'user', content: prompt }],
+      response_format: { type: 'json_object' },
+    });
+
+    const textResponse = completion.choices[0]?.message?.content;
+    if (!textResponse) {
+      throw new Error(`Keine Antwort von ${model} erhalten.`);
+    }
+
+    const cleanJson = textResponse.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    const parsed = JSON.parse(cleanJson);
+    this.logger.log(`✅ Erfolg mit Modell: ${model}`);
+    return parsed;
   }
 
   private async askOllama(prompt: string) {
@@ -244,3 +195,5 @@ export class AiService {
     }
   }
 }
+
+

@@ -6,3 +6,4 @@ export * from './components/InputTextarea/InputTextarea';
 export * from './components/ActionTile/ActionTile';
 export * from './components/Header/Header';
 export * from './components/RecipeCard/RecipeCard';
+export * from './components/BottomSheet/BottomSheet';

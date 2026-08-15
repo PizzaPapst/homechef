@@ -26,9 +26,44 @@
                 "disabled": {
                     "value": "{color.scooty-gray.400}"
                 }
+            },
+            "icon": {
+                "disabled": {
+                    "value": "{color.scooty-gray.400}"
+                }
+            },
+            "feedback": {
+                "error": {
+                    "value": "{color.bold-red.600}"
+                },
+                "information": {
+                    "value": "{color.fresh-blue.600}"
+                }
             }
         },
         "background": {
+            "input": {
+                "default": {
+                    "value": "{color.white}"
+                },
+                "hover": {
+                    "value": "{color.scooty-gray.50}"
+                },
+                "focused": {
+                    "value": "{color.white}"
+                },
+                "disabled": {
+                    "value": "{color.scooty-gray.100}"
+                }
+            },
+            "feedback": {
+                "error-hover": {
+                    "value": "{color.bold-red.100}"
+                },
+                "error-pressed": {
+                    "value": "{color.bold-red.200}"
+                }
+            },
             "action": {
                 "primary-subtle-default": {
                     "value": "{color.muted-turquoise.100}"
@@ -92,6 +127,22 @@
             }
         },
         "border": {
+            "input": {
+                "default": {
+                    "value": "{color.scooty-gray.300}"
+                },
+                "disabled": {
+                    "value": "{color.scooty-gray.200}"
+                }
+            },
+            "action": {
+                "secondary-default": {
+                    "value": "{color.scooty-gray.300}"
+                },
+                "disabled": {
+                    "value": "{color.scooty-gray.200}"
+                }
+            },
             "surface": {
                 "neutral-default": {
                     "value": "{color.white}"

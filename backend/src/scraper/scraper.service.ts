@@ -215,11 +215,18 @@ export class ScraperService {
         for (const script of scripts) {
           try {
             const content = JSON.parse(script.innerHTML);
-            const items = Array.isArray(content) ? content : [content];
+            const items = Array.isArray(content)
+              ? content
+              : content['@graph'] && Array.isArray(content['@graph'])
+              ? content['@graph']
+              : [content];
+
             const recipe = items.find(
-              (i) =>
-                i['@type'] === 'Recipe' ||
-                (Array.isArray(i['@type']) && i['@type'].includes('Recipe')),
+              (i: any) =>
+                i &&
+                (i['@type'] === 'Recipe' ||
+                  (Array.isArray(i['@type']) && i['@type'].includes('Recipe')) ||
+                  (typeof i['@type'] === 'string' && i['@type'].toLowerCase().includes('recipe'))),
             );
             if (recipe) return recipe;
           } catch (e) {
@@ -247,13 +254,20 @@ export class ScraperService {
     $('script[type="application/ld+json"]').each((i, el) => {
       try {
         const parsed = JSON.parse($(el).html() || '{}');
-        const schema = Array.isArray(parsed)
-          ? parsed.find((s) => s['@type'] === 'Recipe')
-          : parsed;
-        if (
-          schema &&
-          (schema['@type'] === 'Recipe' || schema['@type']?.includes('Recipe'))
-        ) {
+        const items = Array.isArray(parsed)
+          ? parsed
+          : parsed['@graph'] && Array.isArray(parsed['@graph'])
+          ? parsed['@graph']
+          : [parsed];
+
+        const schema = items.find(
+          (s: any) =>
+            s &&
+            (s['@type'] === 'Recipe' ||
+              (Array.isArray(s['@type']) && s['@type'].includes('Recipe')) ||
+              (typeof s['@type'] === 'string' && s['@type'].toLowerCase().includes('recipe'))),
+        );
+        if (schema) {
           foundData = schema;
           return false;
         }
@@ -381,7 +395,7 @@ export class ScraperService {
       description: data.description || '',
       sourceUrl: originalUrl,
       imageUrl: this.extractImageUrl(data.image) || '', // Leere Strings statt undefined
-      servings: parseInt(data.recipeYield) || 4,
+      servings: parseInt(Array.isArray(data.recipeYield) ? data.recipeYield[0] : (data.recipeYield || '4')) || 4,
       prepTime: this.parseDuration(timeString) || 0,
 
       // Zutaten Array mappen

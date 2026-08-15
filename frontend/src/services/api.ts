@@ -141,3 +141,38 @@ export async function saveSearchHistory(term: string, filterCount: number, filte
     return null;
   }
 }
+
+/**
+ * Analysiert und importiert ein Rezept von einer Webseiten-URL.
+ * @param {string} url Die Rezept-URL
+ */
+export async function analyzeRecipe(url: string): Promise<Record<string, unknown>> {
+  const response = await fetch(`${API_URL}/recipes/analyze?url=${encodeURIComponent(url)}`);
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || "Fehler beim Importieren des Rezepts");
+  }
+  return await response.json();
+}
+
+/**
+ * Speichert ein neues Rezept im Backend.
+ * @param {Record<string, unknown>} recipeData Die Rezeptdaten
+ */
+export async function createRecipe(recipeData: Record<string, unknown>): Promise<any> {
+  const response = await fetch(`${API_URL}/recipes`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(recipeData),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || "Fehler beim Speichern des Rezepts");
+  }
+
+  return await response.json();
+}
+

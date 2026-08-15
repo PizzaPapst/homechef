@@ -223,6 +223,138 @@ export default {
             },
           },
         },
+
+        // ActionTile-spezifische Tokens
+        'action-tile': {
+          background: {
+            default: 'var(--action-tile-color-background-default)',
+            hover: 'var(--action-tile-color-background-hover)',
+            pressed: 'var(--action-tile-color-background-pressed)',
+            disabled: 'var(--action-tile-color-background-disabled)',
+          },
+          icon: {
+            default: 'var(--action-tile-color-icon-default)',
+            disabled: 'var(--action-tile-color-icon-disabled)',
+          },
+          text: {
+            default: 'var(--action-tile-color-text-default)',
+            disabled: 'var(--action-tile-color-text-disabled)',
+          },
+        },
+
+        // IconButton-spezifische Tokens
+        'icon-button': {
+          primary: {
+            background: {
+              default: 'var(--icon-button-primary-color-background-default)',
+              hover: 'var(--icon-button-primary-color-background-hover)',
+              pressed: 'var(--icon-button-primary-color-background-pressed)',
+              focused: 'var(--icon-button-primary-color-background-focused)',
+              disabled: 'var(--icon-button-primary-color-background-disabled)',
+            },
+            content: {
+              default: 'var(--icon-button-primary-color-content-default)',
+              disabled: 'var(--icon-button-primary-color-content-disabled)',
+            },
+          },
+          secondary: {
+            background: {
+              default: 'var(--icon-button-secondary-color-background-default)',
+              hover: 'var(--icon-button-secondary-color-background-hover)',
+              pressed: 'var(--icon-button-secondary-color-background-pressed)',
+              focused: 'var(--icon-button-secondary-color-background-focused)',
+              disabled: 'var(--icon-button-secondary-color-background-disabled)',
+            },
+            content: {
+              default: 'var(--icon-button-secondary-color-content-default)',
+              disabled: 'var(--icon-button-secondary-color-content-disabled)',
+            },
+            border: {
+              default: 'var(--icon-button-secondary-color-border-default)',
+              disabled: 'var(--icon-button-secondary-color-border-disabled)',
+            },
+          },
+          tertiary: {
+            background: {
+              default: 'var(--icon-button-tertiary-color-background-default)',
+              hover: 'var(--icon-button-tertiary-color-background-hover)',
+              pressed: 'var(--icon-button-tertiary-color-background-pressed)',
+              focused: 'var(--icon-button-tertiary-color-background-focused)',
+              disabled: 'var(--icon-button-tertiary-color-background-disabled)',
+            },
+            content: {
+              default: 'var(--icon-button-tertiary-color-content-default)',
+              disabled: 'var(--icon-button-tertiary-color-content-disabled)',
+            },
+          },
+          'tertiary-inverted': {
+            background: {
+              default: 'var(--icon-button-tertiary-inverted-color-background-default)',
+              hover: 'var(--icon-button-tertiary-inverted-color-background-hover)',
+              pressed: 'var(--icon-button-tertiary-inverted-color-background-pressed)',
+              focused: 'var(--icon-button-tertiary-inverted-color-background-focused)',
+              disabled: 'var(--icon-button-tertiary-inverted-color-background-disabled)',
+            },
+            content: {
+              default: 'var(--icon-button-tertiary-inverted-color-content-default)',
+            },
+          },
+          'tertiary-destructive': {
+            background: {
+              default: 'var(--icon-button-tertiary-destructive-color-background-default)',
+              hover: 'var(--icon-button-tertiary-destructive-color-background-hover)',
+              pressed: 'var(--icon-button-tertiary-destructive-color-background-pressed)',
+              focused: 'var(--icon-button-tertiary-destructive-color-background-focused)',
+              disabled: 'var(--icon-button-tertiary-destructive-color-background-disabled)',
+            },
+            content: {
+              default: 'var(--icon-button-tertiary-destructive-color-content-default)',
+              disabled: 'var(--icon-button-tertiary-destructive-color-content-disabled)',
+            },
+          },
+          'primary-subtle': {
+            background: {
+              default: 'var(--icon-button-primary-subtle-color-background-default)',
+              hover: 'var(--icon-button-primary-subtle-color-background-hover)',
+              pressed: 'var(--icon-button-primary-subtle-color-background-pressed)',
+              focused: 'var(--icon-button-primary-subtle-color-background-focused)',
+              disabled: 'var(--icon-button-primary-subtle-color-background-disabled)',
+            },
+            content: {
+              default: 'var(--icon-button-primary-subtle-color-content-default)',
+              hover: 'var(--icon-button-primary-subtle-color-content-hover)',
+              pressed: 'var(--icon-button-primary-subtle-color-content-pressed)',
+              disabled: 'var(--icon-button-primary-subtle-color-content-disabled)',
+            },
+          },
+        },
+
+        // Input-spezifische Tokens
+        input: {
+          'read-only': {
+            background: {
+              default: 'var(--input-read-only-color-background-default)',
+            },
+          },
+          background: {
+            default: 'var(--input-color-background-default)',
+            hover: 'var(--input-color-background-hover)',
+            focused: 'var(--input-color-background-focused)',
+            disabled: 'var(--input-color-background-disabled)',
+          },
+          border: {
+            default: 'var(--input-color-border-default)',
+            disabled: 'var(--input-color-border-disabled)',
+            error: 'var(--input-color-border-error)',
+            focused: 'var(--input-color-border-focused)',
+          },
+          content: {
+            default: 'var(--input-color-content-default)',
+            disabled: 'var(--input-color-content-disabled)',
+            error: 'var(--input-color-content-error)',
+            placeholder: 'var(--input-color-content-placeholder)',
+          },
+        },
       },
       
       // Typography Tokens

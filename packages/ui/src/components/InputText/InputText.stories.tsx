@@ -12,7 +12,38 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Name',
-    placeholder: 'Enter text...',
+    placeholder: 'Url eintippen',
+  },
+};
+
+export const WithLabel: Story = {
+  args: {
+    label: 'Rezept URL',
+    placeholder: 'https://example.com/rezept',
+  },
+};
+
+export const ErrorState: Story = {
+  args: {
+    label: 'Rezept URL',
+    placeholder: 'https://example.com/rezept',
+    value: 'invalid-url',
+    error: 'Bitte gib eine gültige URL ein',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    label: 'Gesperrtes Feld',
+    value: 'https://example.com',
+    disabled: true,
+  },
+};
+
+export const ReadOnly: Story = {
+  args: {
+    label: 'Nur Lesezugriff',
+    value: 'https://example.com',
+    readOnly: true,
   },
 };
