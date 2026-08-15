@@ -19,5 +19,8 @@ npm-debug.log
 .idea/
 
 # --- Build Ordner (falls mal was im Root landet) ---
+/dist/
+/build/
 dist/
-build/
+!packages/ui/src/build/
+!packages/ui/src/build/**
