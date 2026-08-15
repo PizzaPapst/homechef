@@ -17,7 +17,7 @@ import { de } from "date-fns/locale";
 import Header from "../components/ui/Header";
 
 import { fetchAllRecipes, saveWeeklyPlan } from "@/services/api";
-import { RecipeCard } from "../components/RecipeCard";
+import { RecipeCard } from "@homechef/ui";
 
 const defaultValues = {
   startDate: "",
@@ -236,10 +236,9 @@ export default function WeeklyPlanWizard() {
                     {/* Die Karte */}
                     <div className="group transition-all">
                       {recipe ? (
-                        <RecipeCard
-                          recipe={recipe}
-                          onClick={() => openSelection(dateKey)}
-                        />
+                        <div onClick={() => openSelection(dateKey)} className="cursor-pointer">
+                          <RecipeCard recipe={recipe} />
+                        </div>
                       ) : (
                         <div
                           onClick={() => openSelection(dateKey)}

@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "@phosphor-icons/react";
-import { RecipeCard } from "../components/RecipeCard";
+import { RecipeCard } from "@homechef/ui";
 import Searchbar from "../components/ui/Searchbar";
 import Header from "../components/ui/Header";
 import { IconButton } from "../components/ui/IconButton";
@@ -116,7 +116,7 @@ export default function SearchResultsPage() {
                             <RecipeCard
                                 key={recipe.id}
                                 recipe={{ ...recipe, categories: [] }}
-                                variant="list"
+                                size="small"
                             />
                         ))
                     ) : !loading && (

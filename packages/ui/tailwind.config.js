@@ -195,6 +195,34 @@ export default {
             },
           },
         },
+
+        // RecipeCard-spezifische Tokens
+        'recipe-card': {
+          color: {
+            content: 'var(--recipe-card-color-content)',
+          },
+          large: {
+            padding: 'var(--recipe-card-large-padding)',
+            borderRadius: {
+              default: 'var(--recipe-card-large-border-radius-default)',
+            },
+            background: {
+              'default-start': 'var(--recipe-card-large-color-background-default-start)',
+              'default-middle': 'var(--recipe-card-large-color-background-default-middle)',
+              'default-end': 'var(--recipe-card-large-color-background-default-end)',
+            },
+          },
+          small: {
+            padding: 'var(--recipe-card-small-padding)',
+            borderRadius: {
+              default: 'var(--recipe-card-small-border-radius-default)',
+            },
+            background: {
+              'default-start': 'var(--recipe-card-small-color-background-default-start)',
+              'default-end': 'var(--recipe-card-small-color-background-default-end)',
+            },
+          },
+        },
       },
       
       // Typography Tokens
@@ -307,6 +335,17 @@ export default {
   plugins: [
     function({ addComponents }) {
       addComponents({
+        // Header Component Classes
+        '.header-default': {
+          'background-color': 'var(--color-background-surface-neutral-elevated)',
+          'border-bottom-width': 'var(--border-width-1)',
+          'border-bottom-color': 'var(--color-border-surface-neutral-elevated)',
+        },
+        '.header-quiet': {
+          'background-color': 'transparent',
+        },
+
+        // Typography Classes
         '.typography-body-small': {
           'font-size': 'var(--typography-font-size-13)',
           'line-height': 'var(--typography-line-height-14)',

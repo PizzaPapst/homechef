@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export interface HeaderProps {
   variant?: 'default' | 'quiet';
@@ -10,8 +10,8 @@ export const Header = ({ variant = 'default', children, className = '' }: Header
   const baseStyles = 'w-full px-16 pb-16 pt-0 flex gap-8';
 
   const variants = {
-    default: 'bg-background-surface-elevated border-b-1 border-header-color-border-default',
-    quiet: 'bg-transparent'
+    default: 'header-default',
+    quiet: 'header-quiet',
   };
 
   return (

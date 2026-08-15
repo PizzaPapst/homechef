@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "@phosphor-icons/react";
-import { RecipeCard } from "../components/RecipeCard";
+import { RecipeCard } from "@homechef/ui";
 import Header from "../components/ui/Header";
 import { IconButton } from "../components/ui/IconButton";
 import { fetchAllRecipes } from "@/services/api";
@@ -70,7 +70,7 @@ export default function CategoryPage() {
                             <RecipeCard
                                 key={recipe.id}
                                 recipe={recipe}
-                                variant="list"
+                                size="small"
                             />
                         ))
                     ) : !loading && (

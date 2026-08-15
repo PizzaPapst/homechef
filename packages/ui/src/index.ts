@@ -5,3 +5,4 @@ export * from './components/InputText/InputText';
 export * from './components/InputTextarea/InputTextarea';
 export * from './components/ActionTile/ActionTile';
 export * from './components/Header/Header';
+export * from './components/RecipeCard/RecipeCard';

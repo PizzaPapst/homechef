@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export interface ActionTileProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;

@@ -9,7 +9,6 @@
                     "disabled": {
                         "value": "{color.content.text.disabled}"
                     }
-                    
                 },
                 "background": {
                     "default-start": {
@@ -38,8 +37,7 @@
                     },
                     "disabled": {
                         "value": "{color.background.action.disabled}"
-                    }                   
-                    
+                    }
                 }
             }
         }
@@ -47,24 +45,77 @@
     "header": {
         "color": {
             "content": {
-                    "default": {
-                        "value": "{color.content.text.default}"
-                    }                    
-                },
-            "border": {
-                    "default": {
-                        "value": "{color.border.surface.neutral-elevated}"
-                    }
-                    
-                },
-                "background": {
-                    "default": {
-                        "value": "{color.muted-turquoise.500}"
-                    },
-                    "quiet": {
-                        "value": "{color.muted-turquoise.600}"
-                    }                 
+                "default": {
+                    "value": "{color.content.text.default}"
                 }
+            },
+            "border": {
+                "default": {
+                    "value": "{color.border.surface.neutral-elevated}"
+                }
+            },
+            "background": {
+                "default": {
+                    "value": "{color.muted-turquoise.500}"
+                },
+                "quiet": {
+                    "value": "{color.muted-turquoise.600}"
+                }
+            }
+        }
+    },
+    "recipe-card": {
+        "color": {
+            "content": {
+                "value": "{color.content.text.inverted}"
+            }
+        },
+        "large": {
+            "padding": {
+                "value": "{spacing.16}"
+            },
+            "border": {
+                "radius": {
+                    "default": {
+                        "value": "{border.radius.16}"
+                    }
+                }
+            },
+            "color": {
+                "background": {
+                    "default-start": {
+                        "value": "rgba(0, 0, 0, 0.0)"
+                    },
+                    "default-middle": {
+                        "value": "rgba(0, 0, 0, 0.3)"
+                    },
+                    "default-end": {
+                        "value": "rgba(0, 0, 0, 0.75)"
+                    }
+                }
+            }
+        },
+        "small": {
+            "padding": {
+                "value": "{spacing.8}"
+            },
+            "border": {
+                "radius": {
+                    "default": {
+                        "value": "{border.radius.12}"
+                    }
+                }
+            },
+            "color": {
+                "background": {
+                    "default-start": {
+                        "value": "rgba(0, 0, 0, 0.0)"
+                    },
+                    "default-end": {
+                        "value": "rgba(0, 0, 0, 0.5)"
+                    }
+                }
+            }
         }
     }
 }
