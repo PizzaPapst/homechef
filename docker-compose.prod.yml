@@ -35,7 +35,7 @@ services:
         condition: service_healthy
     environment:
       - DATABASE_URL=${DATABASE_URL}
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
       - SPOONACULAR_API_KEY=${SPOONACULAR_API_KEY}
       - DEEPL_KEY=${DEEPL_KEY}
       - HF_MODEL_CACHE=/app/data/whisper-models
