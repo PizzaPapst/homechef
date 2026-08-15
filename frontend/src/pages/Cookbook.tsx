@@ -1,15 +1,12 @@
 import { RecipeCard, Header } from "@homechef/ui";
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import Searchbar from "../components/ui/Searchbar";
 import { fetchAllRecipes } from "@/services/api";
 
 type RecipeAny = Record<string, any>;
 
 export default function Cookbook() {
-  const navigate = useNavigate();
   const [recipes, setRecipes] = useState<RecipeAny[]>([]);
 
   useEffect(() => {
@@ -17,9 +14,9 @@ export default function Cookbook() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full bg-scooty-gray-50 pb-80 overflow-hidden">
+    <div className="flex flex-col h-full bg-scooty-gray-50 overflow-hidden">
       {/* Header */}
-      <Header variant="quiet">
+      <Header variant="quiet" className="pt-safe">
         <h1 className="typography-heading-medium text-content-text-default">Rezepte</h1>
       </Header>
 
@@ -44,7 +41,7 @@ export default function Cookbook() {
         </div>
       </div>
 
-      {/* Floating Action Button */}
+      {/* Floating Action Button
       <Button
         variant="fab"
         size="icon"
@@ -52,7 +49,7 @@ export default function Cookbook() {
         onClick={() => navigate("/recipe/create")}
       >
         <Plus size={24} />
-      </Button>
+      </Button> */}
     </div>
   );
 }

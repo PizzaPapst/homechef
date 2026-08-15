@@ -92,11 +92,11 @@ export default function RecipeDetail() {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-white overflow-hidden pb-80 relative">
+    <div className="flex flex-col h-full bg-white overflow-hidden relative">
       {/* Header with Actions */}
       <Header
         className={cn(
-          "absolute top-0 left-0 right-0 z-50 justify-between transition-all duration-300",
+          "absolute top-0 left-0 right-0 z-50 justify-between transition-all duration-300 pt-safe px-16",
           isScrolled ? "bg-white shadow-header-shadow" : "bg-transparent shadow-none"
         )}
       >
