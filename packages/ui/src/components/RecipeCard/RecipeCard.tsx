@@ -1,4 +1,5 @@
 import type React from 'react';
+import { Clock } from 'lucide-react';
 import { Badge, type BadgeVariant } from '../Badge/Badge';
 
 export interface RecipeBadge {
@@ -36,13 +37,6 @@ export interface RecipeCardProps {
 
 const DEFAULT_PLACEHOLDER_IMAGE =
   'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop';
-
-const TimerIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10" />
-    <polyline points="12 6 12 12 16 14" />
-  </svg>
-);
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
@@ -93,7 +87,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
               {title}
             </h3>
             <div className="flex items-center gap-4 text-white/90">
-              <TimerIcon />
+              <Clock
+                size={16}
+                strokeWidth={1.5}
+                absoluteStrokeWidth={true}
+              />
               <span className="typography-body-medium">{prepTime} Min.</span>
             </div>
           </div>
@@ -123,7 +121,11 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
           <div className="flex-1 flex flex-col justify-end gap-4">
             <div className="flex items-center gap-4 text-white/90">
-              <TimerIcon />
+              <Clock
+                size={16}
+                strokeWidth={1.5}
+                absoluteStrokeWidth={true}
+              />
               <span className="typography-body-small">{prepTime} Min.</span>
             </div>
           </div>
