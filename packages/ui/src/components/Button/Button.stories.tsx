@@ -23,3 +23,47 @@ export const Secondary: Story = {
     label: 'Abbrechen',
   },
 };
+
+export const Tertiary: Story = {
+  args: {
+    variant: 'tertiary',
+    label: 'Details anzeigen',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    variant: 'secondary',
+    label: 'Deaktiviert',
+    disabled: true,
+  },
+
+};
+
+export const Wrapping: Story = {
+  args: {
+    variant: 'secondary',
+    label: 'Lorem ipsum dolor sit amet, consectetur',
+    disabled: false,
+    className: 'w-[250px]'
+  }
+}
+
+export const Overflow: Story = {
+  args: {
+    variant: 'secondary',
+    label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    disabled: false,
+    className: 'w-[250px]'
+  }
+}
+
+export const OverflowLoading: Story = {
+  args: {
+    variant: 'secondary',
+    label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    disabled: false,
+    className: 'w-[250px]',
+    isLoading: true
+  }
+}

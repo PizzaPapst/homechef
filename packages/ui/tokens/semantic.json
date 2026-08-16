@@ -155,7 +155,7 @@
             },
             "action": {
                 "secondary-default": {
-                    "value": "{color.scooty-gray.300}"
+                    "value": "{color.scooty-gray.400}"
                 },
                 "disabled": {
                     "value": "{color.scooty-gray.200}"

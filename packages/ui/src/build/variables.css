@@ -3,8 +3,12 @@
  */
 
 :root {
+  --button-color-content-disabled: rgba(159,159,160,1);
+  --button-color-background-disabled: rgba(231,231,233,1);
+  --button-border-radius-default: 8px;
+  --button-spacing-default: 8px;
+  --button-padding-default: 16px;
   --button-primary-color-content-default: rgba(252,252,253,1);
-  --button-primary-color-content-disabled: rgba(159,159,160,1);
   --button-primary-color-background-default-start: rgba(68,118,119,1);
   --button-primary-color-background-default-end: rgba(20,87,88,1);
   --button-primary-color-background-hover-start: rgba(20,87,88,1);
@@ -13,7 +17,19 @@
   --button-primary-color-background-pressed-end: rgba(0,44,45,1);
   --button-primary-color-background-focused-start: rgba(68,118,119,1);
   --button-primary-color-background-focused-end: rgba(20,87,88,1);
-  --button-primary-color-background-disabled: rgba(231,231,233,1);
+  --button-secondary-color-content-default: rgba(39,39,42,1);
+  --button-secondary-color-background-default: rgba(255,255,255,1);
+  --button-secondary-color-background-hover: rgba(252,252,253,1);
+  --button-secondary-color-background-pressed: rgba(244,244,246,1);
+  --button-secondary-color-background-focused: rgba(255,255,255,1);
+  --button-secondary-color-border-default: rgba(159,159,160,1);
+  --button-secondary-color-border-disabled: rgba(231,231,233,1);
+  --button-secondary-border-width-default: 1px;
+  --button-tertiary-color-content-default: rgba(39,39,42,1);
+  --button-tertiary-color-background-default: rgba(255,255,255,0);
+  --button-tertiary-color-background-hover: rgba(252,252,253,1);
+  --button-tertiary-color-background-pressed: rgba(244,244,246,1);
+  --button-tertiary-color-background-focused: rgba(255,255,255,1);
   --header-color-content-default: rgba(39,39,42,1);
   --header-color-border-default: rgba(211,211,213,1);
   --header-color-background-default: rgba(68,118,119,1);
@@ -60,7 +76,7 @@
   --icon-button-secondary-color-background-pressed: rgba(244,244,246,1);
   --icon-button-secondary-color-background-focused: rgba(255,255,255,1);
   --icon-button-secondary-color-content-default: rgba(39,39,42,1);
-  --icon-button-secondary-color-border-default: rgba(211,211,213,1);
+  --icon-button-secondary-color-border-default: rgba(159,159,160,1);
   --icon-button-secondary-color-border-disabled: rgba(231,231,233,1);
   --icon-button-secondary-border-width-default: 1px;
   --icon-button-tertiary-color-background-default: rgba(255,255,255,0);
@@ -248,7 +264,7 @@
   --color-background-surface-inverted: rgba(0,0,0,1);
   --color-border-input-default: rgba(211,211,213,1);
   --color-border-input-disabled: rgba(231,231,233,1);
-  --color-border-action-secondary-default: rgba(211,211,213,1);
+  --color-border-action-secondary-default: rgba(159,159,160,1);
   --color-border-action-disabled: rgba(231,231,233,1);
   --color-border-surface-neutral-default: rgba(255,255,255,1);
   --color-border-surface-neutral-elevated: rgba(211,211,213,1);

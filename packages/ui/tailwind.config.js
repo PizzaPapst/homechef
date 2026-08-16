@@ -318,10 +318,41 @@ export default {
         
         // Component Colors - Button-spezifische Tokens
         button: {
+          color: {
+            background: {
+              disabled: 'var(--button-color-background-disabled)',
+            },
+            content: {
+              disabled: 'var(--button-color-content-disabled)',
+            },
+          },
+          background: {
+            disabled: 'var(--button-color-background-disabled)',
+          },
+          content: {
+            disabled: 'var(--button-color-content-disabled)',
+          },
           primary: {
+            color: {
+              content: {
+                default: 'var(--button-primary-color-content-default)',
+                disabled: 'var(--button-color-content-disabled)',
+              },
+              background: {
+                'default-start': 'var(--button-primary-color-background-default-start)',
+                'default-end': 'var(--button-primary-color-background-default-end)',
+                'hover-start': 'var(--button-primary-color-background-hover-start)',
+                'hover-end': 'var(--button-primary-color-background-hover-end)',
+                'pressed-start': 'var(--button-primary-color-background-pressed-start)',
+                'pressed-end': 'var(--button-primary-color-background-pressed-end)',
+                'focused-start': 'var(--button-primary-color-background-focused-start)',
+                'focused-end': 'var(--button-primary-color-background-focused-end)',
+                disabled: 'var(--button-color-background-disabled)',
+              },
+            },
             content: {
               default: 'var(--button-primary-color-content-default)',
-              disabled: 'var(--button-primary-color-content-disabled)',
+              disabled: 'var(--button-color-content-disabled)',
             },
             background: {
               'default-start': 'var(--button-primary-color-background-default-start)',
@@ -332,7 +363,67 @@ export default {
               'pressed-end': 'var(--button-primary-color-background-pressed-end)',
               'focused-start': 'var(--button-primary-color-background-focused-start)',
               'focused-end': 'var(--button-primary-color-background-focused-end)',
-              disabled: 'var(--button-primary-color-background-disabled)',
+              disabled: 'var(--button-color-background-disabled)',
+            },
+          },
+          secondary: {
+            color: {
+              content: {
+                default: 'var(--button-secondary-color-content-default)',
+                disabled: 'var(--button-color-content-disabled)',
+              },
+              background: {
+                default: 'var(--button-secondary-color-background-default)',
+                hover: 'var(--button-secondary-color-background-hover)',
+                pressed: 'var(--button-secondary-color-background-pressed)',
+                focused: 'var(--button-secondary-color-background-focused)',
+                disabled: 'var(--button-color-background-disabled)',
+              },
+              border: {
+                default: 'var(--button-secondary-color-border-default)',
+                disabled: 'var(--button-secondary-color-border-disabled)',
+              },
+            },
+            content: {
+              default: 'var(--button-secondary-color-content-default)',
+              disabled: 'var(--button-color-content-disabled)',
+            },
+            background: {
+              default: 'var(--button-secondary-color-background-default)',
+              hover: 'var(--button-secondary-color-background-hover)',
+              pressed: 'var(--button-secondary-color-background-pressed)',
+              focused: 'var(--button-secondary-color-background-focused)',
+              disabled: 'var(--button-color-background-disabled)',
+            },
+            border: {
+              default: 'var(--button-secondary-color-border-default)',
+              disabled: 'var(--button-secondary-color-border-disabled)',
+            },
+          },
+          tertiary: {
+            color: {
+              content: {
+                default: 'var(--button-tertiary-color-content-default)',
+                disabled: 'var(--button-color-content-disabled)',
+              },
+              background: {
+                default: 'var(--button-tertiary-color-background-default)',
+                hover: 'var(--button-tertiary-color-background-hover)',
+                pressed: 'var(--button-tertiary-color-background-pressed)',
+                focused: 'var(--button-tertiary-color-background-focused)',
+                disabled: 'var(--button-color-background-disabled)',
+              },
+            },
+            content: {
+              default: 'var(--button-tertiary-color-content-default)',
+              disabled: 'var(--button-color-content-disabled)',
+            },
+            background: {
+              default: 'var(--button-tertiary-color-background-default)',
+              hover: 'var(--button-tertiary-color-background-hover)',
+              pressed: 'var(--button-tertiary-color-background-pressed)',
+              focused: 'var(--button-tertiary-color-background-focused)',
+              disabled: 'var(--button-color-background-disabled)',
             },
           },
         },
