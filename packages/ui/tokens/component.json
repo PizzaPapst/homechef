@@ -181,52 +181,62 @@
         }
     },
     "icon-button": {
+        "color": {
+            "background": {
+                "disabled": {
+                    "value": "{color.background.action.disabled}"
+                }
+            },
+            "content": {
+                "disabled": {
+                    "value": "{color.content.icon.disabled}"
+                }
+            }
+        },
+        "padding": {
+            "default": {
+                "value": "{spacing.16}"
+            }
+        },
+        "border": {
+            "radius": {
+                "default": {
+                    "value": "{border.radius.round}"
+                }
+            }
+        },
         "primary": {
             "color": {
                 "background": {
-                    "default": {
-                        "value": "{color.background.action.primary-default}"
+                    "default-start": {
+                        "value": "{color.muted-turquoise.500}"
                     },
-                    "hover": {
-                        "value": "{color.muted-turquoise.700}"
-                    },
-                    "pressed": {
-                        "value": "{color.muted-turquoise.800}"
-                    },
-                    "focused": {
+                    "default-end": {
                         "value": "{color.muted-turquoise.600}"
                     },
-                    "disabled": {
-                        "value": "{color.background.action.disabled}"
+                    "hover-start": {
+                        "value": "{color.muted-turquoise.600}"
+                    },
+                    "hover-end": {
+                        "value": "{color.muted-turquoise.700}"
+                    },
+                    "pressed-start": {
+                        "value": "{color.muted-turquoise.700}"
+                    },
+                    "pressed-end": {
+                        "value": "{color.muted-turquoise.800}"
+                    },
+                    "focused-start": {
+                        "value": "{color.muted-turquoise.500}"
+                    },
+                    "focused-end": {
+                        "value": "{color.muted-turquoise.600}"
                     }
                 },
                 "content": {
                     "default": {
                         "value": "{color.content.text.inverted}"
-                    },
-                    "disabled": {
-                        "value": "{color.content.text.disabled}"
                     }
-                }
-            },
-            "border": {
-                "radius": {
-                    "default": {
-                        "value": "{border.radius.round}"
-                    }
-                }
-            },
-            "padding": {
-                "x": {
-                    "value": "{spacing.16}"
-                },
-                "y": {
-                    "value": "{spacing.16}"
-                }
-            },
-            "icon": {
-                "size": {
-                    "value": "{size.16}"
                 }
             }
         },
@@ -244,17 +254,11 @@
                     },
                     "focused": {
                         "value": "{color.background.action.secondary-focused}"
-                    },
-                    "disabled": {
-                        "value": "{color.background.action.disabled}"
                     }
                 },
                 "content": {
                     "default": {
                         "value": "{color.content.text.default}"
-                    },
-                    "disabled": {
-                        "value": "{color.content.text.disabled}"
                     }
                 },
                 "border": {
@@ -267,28 +271,10 @@
                 }
             },
             "border": {
-                "radius": {
-                    "default": {
-                        "value": "{border.radius.round}"
-                    }
-                },
                 "width": {
                     "default": {
                         "value": "{border.width.1}"
                     }
-                }
-            },
-            "padding": {
-                "x": {
-                    "value": "{spacing.16}"
-                },
-                "y": {
-                    "value": "{spacing.16}"
-                }
-            },
-            "icon": {
-                "size": {
-                    "value": "{size.16}"
                 }
             }
         },
@@ -306,38 +292,12 @@
                     },
                     "focused": {
                         "value": "{color.background.action.tertiary-focused}"
-                    },
-                    "disabled": {
-                        "value": "{color.background.action.disabled}"
                     }
                 },
                 "content": {
                     "default": {
                         "value": "{color.content.text.default}"
-                    },
-                    "disabled": {
-                        "value": "{color.content.text.disabled}"
                     }
-                }
-            },
-            "border": {
-                "radius": {
-                    "default": {
-                        "value": "{border.radius.round}"
-                    }
-                }
-            },
-            "padding": {
-                "x": {
-                    "value": "{spacing.16}"
-                },
-                "y": {
-                    "value": "{spacing.16}"
-                }
-            },
-            "icon": {
-                "size": {
-                    "value": "{size.16}"
                 }
             }
         },
@@ -365,26 +325,6 @@
                         "value": "{color.content.text.inverted}"
                     }
                 }
-            },
-            "border": {
-                "radius": {
-                    "default": {
-                        "value": "{border.radius.round}"
-                    }
-                }
-            },
-            "padding": {
-                "x": {
-                    "value": "{spacing.16}"
-                },
-                "y": {
-                    "value": "{spacing.16}"
-                }
-            },
-            "icon": {
-                "size": {
-                    "value": "{size.16}"
-                }
             }
         },
         "tertiary-destructive": {
@@ -409,30 +349,7 @@
                 "content": {
                     "default": {
                         "value": "{color.content.feedback.error}"
-                    },
-                    "disabled": {
-                        "value": "{color.content.text.disabled}"
                     }
-                }
-            },
-            "border": {
-                "radius": {
-                    "default": {
-                        "value": "{border.radius.round}"
-                    }
-                }
-            },
-            "padding": {
-                "x": {
-                    "value": "{spacing.16}"
-                },
-                "y": {
-                    "value": "{spacing.16}"
-                }
-            },
-            "icon": {
-                "size": {
-                    "value": "{size.16}"
                 }
             }
         },
@@ -464,38 +381,7 @@
                     },
                     "pressed": {
                         "value": "{color.content.text.inverted}"
-                    },
-                    "disabled": {
-                        "value": "{color.content.text.disabled}"
                     }
-                }
-            },
-            "border": {
-                "radius": {
-                    "default": {
-                        "value": "{border.radius.8}"
-                    }
-                }
-            },
-            "padding": {
-                "x": {
-                    "value": "{spacing.0}"
-                },
-                "y": {
-                    "value": "{spacing.4}"
-                }
-            },
-            "icon-container-padding": {
-                "x": {
-                    "value": "{spacing.16}"
-                },
-                "y": {
-                    "value": "{spacing.16}"
-                }
-            },
-            "icon": {
-                "size": {
-                    "value": "{size.16}"
                 }
             }
         }

@@ -8,10 +8,25 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        'dm-sans': ['"DM Sans"', 'sans-serif'],
       },
       colors: {
-        // Primitive Colors - Basis-Farben mit allen Abstufungen
+        // Primitive Colors - Basis-Farben mit allen Abstufungen (Kurzform & voller Token-Name)
         turquoise: {
+          50: 'var(--color-muted-turquoise-50)',
+          100: 'var(--color-muted-turquoise-100)',
+          200: 'var(--color-muted-turquoise-200)',
+          300: 'var(--color-muted-turquoise-300)',
+          400: 'var(--color-muted-turquoise-400)',
+          500: 'var(--color-muted-turquoise-500)',
+          600: 'var(--color-muted-turquoise-600)',
+          700: 'var(--color-muted-turquoise-700)',
+          800: 'var(--color-muted-turquoise-800)',
+          900: 'var(--color-muted-turquoise-900)',
+          950: 'var(--color-muted-turquoise-950)',
+        },
+        'muted-turquoise': {
           50: 'var(--color-muted-turquoise-50)',
           100: 'var(--color-muted-turquoise-100)',
           200: 'var(--color-muted-turquoise-200)',
@@ -37,7 +52,34 @@ export default {
           900: 'var(--color-scooty-gray-900)',
           950: 'var(--color-scooty-gray-950)',
         },
+        'scooty-gray': {
+          50: 'var(--color-scooty-gray-50)',
+          100: 'var(--color-scooty-gray-100)',
+          200: 'var(--color-scooty-gray-200)',
+          300: 'var(--color-scooty-gray-300)',
+          400: 'var(--color-scooty-gray-400)',
+          500: 'var(--color-scooty-gray-500)',
+          600: 'var(--color-scooty-gray-600)',
+          700: 'var(--color-scooty-gray-700)',
+          800: 'var(--color-scooty-gray-800)',
+          900: 'var(--color-scooty-gray-900)',
+          950: 'var(--color-scooty-gray-950)',
+        },
         white: {
+          DEFAULT: 'var(--color-white)',
+          50: 'var(--color-pure-white-50)',
+          100: 'var(--color-pure-white-100)',
+          200: 'var(--color-pure-white-200)',
+          300: 'var(--color-pure-white-300)',
+          400: 'var(--color-pure-white-400)',
+          500: 'var(--color-pure-white-500)',
+          600: 'var(--color-pure-white-600)',
+          700: 'var(--color-pure-white-700)',
+          800: 'var(--color-pure-white-800)',
+          900: 'var(--color-pure-white-900)',
+          950: 'var(--color-pure-white-950)',
+        },
+        'pure-white': {
           DEFAULT: 'var(--color-white)',
           50: 'var(--color-pure-white-50)',
           100: 'var(--color-pure-white-100)',
@@ -65,7 +107,33 @@ export default {
           900: 'var(--color-vivid-lime-900)',
           950: 'var(--color-vivid-lime-950)',
         },
+        'vivid-lime': {
+          50: 'var(--color-vivid-lime-50)',
+          100: 'var(--color-vivid-lime-100)',
+          200: 'var(--color-vivid-lime-200)',
+          300: 'var(--color-vivid-lime-300)',
+          400: 'var(--color-vivid-lime-400)',
+          500: 'var(--color-vivid-lime-500)',
+          600: 'var(--color-vivid-lime-600)',
+          700: 'var(--color-vivid-lime-700)',
+          800: 'var(--color-vivid-lime-800)',
+          900: 'var(--color-vivid-lime-900)',
+          950: 'var(--color-vivid-lime-950)',
+        },
         red: {
+          50: 'var(--color-bold-red-50)',
+          100: 'var(--color-bold-red-100)',
+          200: 'var(--color-bold-red-200)',
+          300: 'var(--color-bold-red-300)',
+          400: 'var(--color-bold-red-400)',
+          500: 'var(--color-bold-red-500)',
+          600: 'var(--color-bold-red-600)',
+          700: 'var(--color-bold-red-700)',
+          800: 'var(--color-bold-red-800)',
+          900: 'var(--color-bold-red-900)',
+          950: 'var(--color-bold-red-950)',
+        },
+        'bold-red': {
           50: 'var(--color-bold-red-50)',
           100: 'var(--color-bold-red-100)',
           200: 'var(--color-bold-red-200)',
@@ -91,7 +159,33 @@ export default {
           900: 'var(--color-bright-orange-900)',
           950: 'var(--color-bright-orange-950)',
         },
+        'bright-orange': {
+          50: 'var(--color-bright-orange-50)',
+          100: 'var(--color-bright-orange-100)',
+          200: 'var(--color-bright-orange-200)',
+          300: 'var(--color-bright-orange-300)',
+          400: 'var(--color-bright-orange-400)',
+          500: 'var(--color-bright-orange-500)',
+          600: 'var(--color-bright-orange-600)',
+          700: 'var(--color-bright-orange-700)',
+          800: 'var(--color-bright-orange-800)',
+          900: 'var(--color-bright-orange-900)',
+          950: 'var(--color-bright-orange-950)',
+        },
         blue: {
+          50: 'var(--color-fresh-blue-50)',
+          100: 'var(--color-fresh-blue-100)',
+          200: 'var(--color-fresh-blue-200)',
+          300: 'var(--color-fresh-blue-300)',
+          400: 'var(--color-fresh-blue-400)',
+          500: 'var(--color-fresh-blue-500)',
+          600: 'var(--color-fresh-blue-600)',
+          700: 'var(--color-fresh-blue-700)',
+          800: 'var(--color-fresh-blue-800)',
+          900: 'var(--color-fresh-blue-900)',
+          950: 'var(--color-fresh-blue-950)',
+        },
+        'fresh-blue': {
           50: 'var(--color-fresh-blue-50)',
           100: 'var(--color-fresh-blue-100)',
           200: 'var(--color-fresh-blue-200)',
@@ -117,7 +211,21 @@ export default {
           900: 'var(--color-toned-fuchsia-900)',
           950: 'var(--color-toned-fuchsia-950)',
         },
+        'toned-fuchsia': {
+          50: 'var(--color-toned-fuchsia-50)',
+          100: 'var(--color-toned-fuchsia-100)',
+          200: 'var(--color-toned-fuchsia-200)',
+          300: 'var(--color-toned-fuchsia-300)',
+          400: 'var(--color-toned-fuchsia-400)',
+          500: 'var(--color-toned-fuchsia-500)',
+          600: 'var(--color-toned-fuchsia-600)',
+          700: 'var(--color-toned-fuchsia-700)',
+          800: 'var(--color-toned-fuchsia-800)',
+          900: 'var(--color-toned-fuchsia-900)',
+          950: 'var(--color-toned-fuchsia-950)',
+        },
         transparent: {
+          DEFAULT: 'transparent',
           full: 'var(--color-transparent-full)',
           'black-25': 'var(--color-transparent-black-25)',
           'black-50': 'var(--color-transparent-black-50)',
@@ -137,8 +245,31 @@ export default {
             'link-clicked': 'var(--color-content-text-link-clicked)',
             disabled: 'var(--color-content-text-disabled)',
           },
+          icon: {
+            disabled: 'var(--color-content-icon-disabled)',
+          },
+          feedback: {
+            error: 'var(--color-content-feedback-error)',
+            information: 'var(--color-content-feedback-information)',
+            warning: 'var(--color-content-feedback-warning)',
+            success: 'var(--color-content-feedback-success)',
+          },
         },
         background: {
+          input: {
+            default: 'var(--color-background-input-default)',
+            hover: 'var(--color-background-input-hover)',
+            focused: 'var(--color-background-input-focused)',
+            disabled: 'var(--color-background-input-disabled)',
+          },
+          feedback: {
+            error: 'var(--color-background-feedback-error)',
+            'error-hover': 'var(--color-background-feedback-error-hover)',
+            'error-pressed': 'var(--color-background-feedback-error-pressed)',
+            information: 'var(--color-background-feedback-information)',
+            warning: 'var(--color-background-feedback-warning)',
+            success: 'var(--color-background-feedback-success)',
+          },
           action: {
             'primary-subtle-default': 'var(--color-background-action-primary-subtle-default)',
             'primary-subtle-hover': 'var(--color-background-action-primary-subtle-hover)',
@@ -155,7 +286,33 @@ export default {
             'tertiary-hover': 'var(--color-background-action-tertiary-hover)',
             'tertiary-pressed': 'var(--color-background-action-tertiary-pressed)',
             'tertiary-focused': 'var(--color-background-action-tertiary-focused)',
-             "disabled": 'var(--color-background-action-disabled)',
+            disabled: 'var(--color-background-action-disabled)',
+          },
+          surface: {
+            'neutral-default': 'var(--color-background-surface-neutral-default)',
+            'neutral-elevated': 'var(--color-background-surface-neutral-elevated)',
+            inverted: 'var(--color-background-surface-inverted)',
+          },
+        },
+        border: {
+          input: {
+            default: 'var(--color-border-input-default)',
+            disabled: 'var(--color-border-input-disabled)',
+          },
+          action: {
+            'secondary-default': 'var(--color-border-action-secondary-default)',
+            disabled: 'var(--color-border-action-disabled)',
+          },
+          surface: {
+            'neutral-default': 'var(--color-border-surface-neutral-default)',
+            'neutral-elevated': 'var(--color-border-surface-neutral-elevated)',
+            inverted: 'var(--color-border-surface-inverted)',
+          },
+          feedback: {
+            error: 'var(--color-border-feedback-error)',
+            information: 'var(--color-border-feedback-information)',
+            warning: 'var(--color-border-feedback-warning)',
+            success: 'var(--color-border-feedback-success)',
           },
         },
         
@@ -182,6 +339,16 @@ export default {
 
         // Header-spezifische Tokens
         header: {
+          content: {
+            default: 'var(--header-color-content-default)',
+          },
+          border: {
+            default: 'var(--header-color-border-default)',
+          },
+          background: {
+            default: 'var(--header-color-background-default)',
+            quiet: 'var(--header-color-background-quiet)',
+          },
           color: {
             content: {
               default: 'var(--header-color-content-default)',
@@ -198,14 +365,11 @@ export default {
 
         // RecipeCard-spezifische Tokens
         'recipe-card': {
+          content: 'var(--recipe-card-color-content)',
           color: {
             content: 'var(--recipe-card-color-content)',
           },
           large: {
-            padding: 'var(--recipe-card-large-padding)',
-            borderRadius: {
-              default: 'var(--recipe-card-large-border-radius-default)',
-            },
             background: {
               'default-start': 'var(--recipe-card-large-color-background-default-start)',
               'default-middle': 'var(--recipe-card-large-color-background-default-middle)',
@@ -213,10 +377,6 @@ export default {
             },
           },
           small: {
-            padding: 'var(--recipe-card-small-padding)',
-            borderRadius: {
-              default: 'var(--recipe-card-small-border-radius-default)',
-            },
             background: {
               'default-start': 'var(--recipe-card-small-color-background-default-start)',
               'default-end': 'var(--recipe-card-small-color-background-default-end)',
@@ -244,17 +404,27 @@ export default {
 
         // IconButton-spezifische Tokens
         'icon-button': {
+          background: {
+            disabled: 'var(--icon-button-color-background-disabled)',
+          },
+          content: {
+            disabled: 'var(--icon-button-color-content-disabled)',
+          },
           primary: {
             background: {
-              default: 'var(--icon-button-primary-color-background-default)',
-              hover: 'var(--icon-button-primary-color-background-hover)',
-              pressed: 'var(--icon-button-primary-color-background-pressed)',
-              focused: 'var(--icon-button-primary-color-background-focused)',
-              disabled: 'var(--icon-button-primary-color-background-disabled)',
+              'default-start': 'var(--icon-button-primary-color-background-default-start)',
+              'default-end': 'var(--icon-button-primary-color-background-default-end)',
+              'hover-start': 'var(--icon-button-primary-color-background-hover-start)',
+              'hover-end': 'var(--icon-button-primary-color-background-hover-end)',
+              'pressed-start': 'var(--icon-button-primary-color-background-pressed-start)',
+              'pressed-end': 'var(--icon-button-primary-color-background-pressed-end)',
+              'focused-start': 'var(--icon-button-primary-color-background-focused-start)',
+              'focused-end': 'var(--icon-button-primary-color-background-focused-end)',
+              disabled: 'var(--icon-button-color-background-disabled)',
             },
             content: {
               default: 'var(--icon-button-primary-color-content-default)',
-              disabled: 'var(--icon-button-primary-color-content-disabled)',
+              disabled: 'var(--icon-button-color-content-disabled)',
             },
           },
           secondary: {
@@ -382,7 +552,8 @@ export default {
         light: 'var(--typography-font-weight-light)',
         regular: 'var(--typography-font-weight-regular)',
         medium: 'var(--typography-font-weight-medium)',
-        semibold: 'var(--typography-font-weight-semibold)',
+        semibold: 'var(--typography-font-weight-semi-bold)',
+        'semi-bold': 'var(--typography-font-weight-semi-bold)',
         bold: 'var(--typography-font-weight-bold)',
       },
       lineHeight: {
@@ -462,6 +633,16 @@ export default {
         '16': 'var(--size-16)',
         '38': 'var(--size-38)',
       },
+      minHeight: {
+        'textarea': 'var(--input-text-area-min-height-default)',
+        'input-text-area': 'var(--input-text-area-min-height-default)',
+        '80': 'var(--input-text-area-min-height-default)',
+      },
+      maxHeight: {
+        'textarea': 'var(--input-text-area-max-height-default)',
+        'input-text-area': 'var(--input-text-area-max-height-default)',
+        '264': 'var(--input-text-area-max-height-default)',
+      },
     },
   },
   plugins: [
@@ -469,56 +650,64 @@ export default {
       addComponents({
         // Header Component Classes
         '.header-default': {
-          'background-color': 'var(--color-background-surface-neutral-elevated)',
+          'background-color': 'var(--header-color-background-default)',
           'border-bottom-width': 'var(--border-width-1)',
-          'border-bottom-color': 'var(--color-border-surface-neutral-elevated)',
+          'border-bottom-color': 'var(--header-color-border-default)',
+          'color': 'var(--header-color-content-default)',
         },
         '.header-quiet': {
-          'background-color': 'transparent',
+          'background-color': 'var(--header-color-background-quiet)',
+          'color': 'var(--header-color-content-default)',
         },
 
         // Typography Classes
         '.typography-body-small': {
-          'font-size': 'var(--typography-font-size-13)',
-          'line-height': 'var(--typography-line-height-14)',
-          'letter-spacing': 'var(--typography-letter-spacing-0)',
-          'font-weight': 'var(--typography-font-weight-regular)',
-          'font-family': 'Poppins, sans-serif',
+          'font-size': 'var(--typography-body-small-font-size)',
+          'line-height': 'var(--typography-body-small-line-height)',
+          'letter-spacing': 'var(--typography-body-small-letter-spacing)',
+          'font-weight': 'var(--typography-body-small-font-weight)',
+          'font-family': 'var(--typography-body-small-font-family), sans-serif',
+          'text-transform': 'var(--typography-body-small-text-transform)',
         },
         '.typography-body-medium': {
-          'font-size': 'var(--typography-font-size-16)',
-          'line-height': 'var(--typography-line-height-25)',
-          'letter-spacing': 'var(--typography-letter-spacing-0)',
-          'font-weight': 'var(--typography-font-weight-regular)',
-          'font-family': 'Poppins, sans-serif',
+          'font-size': 'var(--typography-body-medium-font-size)',
+          'line-height': 'var(--typography-body-medium-line-height)',
+          'letter-spacing': 'var(--typography-body-medium-letter-spacing)',
+          'font-weight': 'var(--typography-body-medium-font-weight)',
+          'font-family': 'var(--typography-body-medium-font-family), sans-serif',
+          'text-transform': 'var(--typography-body-medium-text-transform)',
         },
         '.typography-heading-small': {
-          'font-size': 'var(--typography-font-size-19)',
-          'line-height': 'var(--typography-line-height-25)',
-          'letter-spacing': 'var(--typography-letter-spacing-0)',
-          'font-weight': 'var(--typography-font-weight-bold)',
-          'font-family': 'Poppins, sans-serif',
+          'font-size': 'var(--typography-heading-small-font-size)',
+          'line-height': 'var(--typography-heading-small-line-height)',
+          'letter-spacing': 'var(--typography-heading-small-letter-spacing)',
+          'font-weight': 'var(--typography-heading-small-font-weight)',
+          'font-family': 'var(--typography-heading-small-font-family), sans-serif',
+          'text-transform': 'var(--typography-heading-small-text-transform)',
         },
         '.typography-heading-small-emph': {
-          'font-size': 'var(--typography-font-size-19)',
-          'line-height': 'var(--typography-line-height-25)',
-          'letter-spacing': 'var(--typography-letter-spacing-0)',
-          'font-weight': 'var(--typography-font-weight-medium)',
-          'font-family': 'Poppins, sans-serif',
+          'font-size': 'var(--typography-heading-small-emph-font-size)',
+          'line-height': 'var(--typography-heading-small-emph-line-height)',
+          'letter-spacing': 'var(--typography-heading-small-emph-letter-spacing)',
+          'font-weight': 'var(--typography-heading-small-emph-font-weight)',
+          'font-family': 'var(--typography-heading-small-emph-font-family), sans-serif',
+          'text-transform': 'var(--typography-heading-small-emph-text-transform)',
         },
         '.typography-heading-medium': {
-          'font-size': 'var(--typography-font-size-23)',
-          'line-height': 'var(--typography-line-height-36)',
-          'letter-spacing': 'var(--typography-letter-spacing-0)',
-          'font-weight': 'var(--typography-font-weight-bold)',
-          'font-family': 'Poppins, sans-serif',
+          'font-size': 'var(--typography-heading-medium-font-size)',
+          'line-height': 'var(--typography-heading-medium-line-height)',
+          'letter-spacing': 'var(--typography-heading-medium-letter-spacing)',
+          'font-weight': 'var(--typography-heading-medium-font-weight)',
+          'font-family': 'var(--typography-heading-medium-font-family), sans-serif',
+          'text-transform': 'var(--typography-heading-medium-text-transform)',
         },
         '.typography-heading-large': {
-          'font-size': 'var(--typography-font-size-28)',
-          'line-height': 'var(--typography-line-height-44)',
-          'letter-spacing': 'var(--typography-letter-spacing-0)',
-          'font-weight': 'var(--typography-font-weight-bold)',
-          'font-family': 'Poppins, sans-serif',
+          'font-size': 'var(--typography-heading-large-font-size)',
+          'line-height': 'var(--typography-heading-large-line-height)',
+          'letter-spacing': 'var(--typography-heading-large-letter-spacing)',
+          'font-weight': 'var(--typography-heading-large-font-weight)',
+          'font-family': 'var(--typography-heading-large-font-family), sans-serif',
+          'text-transform': 'var(--typography-heading-large-text-transform)',
         },
       });
     },

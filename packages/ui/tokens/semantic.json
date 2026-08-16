@@ -38,6 +38,12 @@
                 },
                 "information": {
                     "value": "{color.fresh-blue.600}"
+                },
+                "warning": {
+                    "value": "{color.bright-orange.600}"
+                },
+                "success": {
+                    "value": "{color.vivid-lime.600}"
                 }
             }
         },
@@ -57,11 +63,23 @@
                 }
             },
             "feedback": {
+                "error": {
+                    "value": "{color.bold-red.600}"
+                },
                 "error-hover": {
                     "value": "{color.bold-red.100}"
                 },
                 "error-pressed": {
                     "value": "{color.bold-red.200}"
+                },
+                "information": {
+                    "value": "{color.fresh-blue.600}"
+                },
+                "warning": {
+                    "value": "{color.bright-orange.600}"
+                },
+                "success": {
+                    "value": "{color.vivid-lime.600}"
                 }
             },
             "action": {
@@ -152,6 +170,20 @@
                 },
                 "inverted": {
                     "value": "{color.black}"
+                }
+            },
+            "feedback": {
+                "error": {
+                    "value": "{color.bold-red.600}"
+                },
+                "information": {
+                    "value": "{color.fresh-blue.400}"
+                },
+                "warning": {
+                    "value": "{color.bright-orange.600}"
+                },
+                "success": {
+                    "value": "{color.vivid-lime.600}"
                 }
             }
         }
